@@ -1,0 +1,934 @@
+﻿<!DOCTYPE html>
+<html lang="id" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoTrol Dashboard</title>
+    <!-- Preconnect to CDNs for faster loading -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Load local Vue.js for speed -->
+    <script src="/lib/vue.global.prod.min.js"></script>
+    <!-- TailwindCSS still from CDN (needs runtime compiler for config) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gray: {
+                            850: '#1f2937',
+                            900: '#111827',
+                            950: '#0b0f19', // Deep dark background
+                        },
+                        frog: {
+                            400: '#4ade80', // Bright Green
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            900: '#052e16', // Dark Green bg
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0b0f19;
+        }
+
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity 0.3s;
+        }
+
+        .fade-enter-from,
+        .fade-leave-to {
+            opacity: 0;
+        }
+
+        /* Custom Scrollbar for Dark Mode */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #111827;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #374151;
+            z-index: 0;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+
+<body class="text-gray-300 h-screen overflow-hidden selection:bg-frog-500 selection:text-white">
+    <div id="app" v-cloak class="flex h-screen bg-[#0b0f19]">
+
+        <!-- Sidebar -->
+        <aside class="w-64 bg-[#111827] flex flex-col flex-shrink-0 border-r border-gray-800">
+            <div class="h-20 flex items-center px-6 border-b border-gray-800">
+                <i class="fas fa-frog text-frog-400 text-2xl mr-3"></i>
+                <span class="font-bold text-xl tracking-tight text-white">GoTrol</span>
+            </div>
+
+            <div class="flex-1 overflow-y-auto py-6">
+                <nav class="space-y-2 px-4">
+                    <p class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Menu</p>
+                    <a href="#" @click.prevent="currentPageView = 'dashboard'"
+                        :class="currentPageView === 'dashboard' ? 'bg-frog-500/10 text-frog-400 border border-frog-500/20' : 'text-gray-400 hover:text-white hover:bg-gray-800'"
+                        class="group flex items-center px-3 py-3 text-sm font-medium rounded-xl transition-all">
+                        <i class="fas fa-chart-pie w-6 text-center mr-2"></i>
+                        Dashboard
+                    </a>
+
+                    <a href="#" @click.prevent="currentPageView = 'registration'; fetchRegistration()"
+                        :class="currentPageView === 'registration' ? 'bg-frog-500/10 text-frog-400 border border-frog-500/20' : 'text-gray-400 hover:text-white hover:bg-gray-800'"
+                        class="group flex items-center px-3 py-3 text-sm font-medium rounded-xl transition-all">
+                        <i class="fas fa-clipboard-list w-6 text-center mr-2"></i>
+                        Laporan Registrasi
+                    </a>
+
+                    <a href="#"
+                        class="group flex items-center px-3 py-3 text-sm font-medium rounded-xl text-gray-400 hover:text-white hover:bg-gray-800 transition-all">
+                        <i class="fas fa-file-alt w-6 text-center mr-2"></i>
+                        Reports
+                    </a>
+
+                    <a href="#"
+                        class="group flex items-center px-3 py-3 text-sm font-medium rounded-xl text-gray-400 hover:text-white hover:bg-gray-800 transition-all">
+                        <i class="fas fa-cog w-6 text-center mr-2"></i>
+                        Settings
+                    </a>
+                </nav>
+            </div>
+
+            <div class="p-4 border-t border-gray-800 bg-[#0f1523]">
+                <div class="flex items-center space-x-3">
+                    <div class="flex-shrink-0">
+                        <div
+                            class="h-9 w-9 rounded-lg bg-gray-800 flex items-center justify-center text-frog-400 font-bold border border-gray-700">
+                            <i class="fas fa-server text-sm"></i>
+                        </div>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-white truncate">Server Status</p>
+                        <div class="flex items-center mt-1">
+                            <span class="flex h-2 w-2 relative mr-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+                                    :class="serverStatus?.status === 'running' ? 'bg-frog-400' : 'bg-red-500'"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2"
+                                    :class="serverStatus?.status === 'running' ? 'bg-frog-500' : 'bg-red-500'"></span>
+                            </span>
+                            <span class="text-xs text-gray-400">{{ serverStatus?.status === 'running' ? 'Running' :
+                                'Stopped' }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Wrapper -->
+        <div class="flex-1 flex flex-col overflow-hidden relative bg-[#0b0f19]">
+
+            <!-- Top Header -->
+            <header class="h-20 flex items-center justify-between px-8 border-b border-gray-800 bg-[#0b0f19]">
+                <div>
+                    <h1 class="text-2xl font-bold text-white">Dashboard</h1>
+                    <p class="text-sm text-gray-500 mt-1">Monitoring status antrean & task ID</p>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <!-- Date Filter -->
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-calendar text-gray-500 group-hover:text-frog-400 transition-colors"></i>
+                        </div>
+                        <input type="date" v-model="selectedDate" @change="fetchDailyReport"
+                            class="bg-[#1f2937] text-white pl-10 pr-4 py-2.5 border border-gray-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-frog-500 focus:border-transparent transition-all shadow-sm w-44 hover:border-gray-600">
+                    </div>
+
+                    <button @click="fetchData"
+                        class="p-2.5 rounded-lg bg-[#1f2937] border border-gray-700 text-gray-400 hover:text-frog-400 hover:border-frog-500/50 transition-all focus:outline-none"
+                        title="Refresh Data">
+                        <i class="fas fa-sync-alt" :class="{ 'fa-spin': loading }"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Scrollable Content -->
+            <main class="flex-1 overflow-y-auto p-8">
+
+                <!-- Dashboard Content -->
+                <div v-if="currentPageView === 'dashboard'">
+
+                    <!-- Combined Row: BPJS Status (70%) + Monthly Card (30%) -->
+                    <div class="flex flex-col lg:flex-row gap-6 mb-8">
+
+                        <!-- Overview Card - BPJS Status (70%) -->
+                        <div
+                            class="w-full lg:w-[70%] bg-gradient-to-r from-[#1f2937] to-[#111827] rounded-2xl p-6 border border-gray-800">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center">
+                                    <div class="p-3 rounded-xl bg-frog-500/20 text-frog-400 mr-4">
+                                        <i class="fas fa-chart-bar text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-semibold text-white">Status Pasien BPJS Hari Ini</h3>
+                                        <p class="text-sm text-gray-500">Perbandingan data SIMRS dengan GoTrol</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-2xl font-bold text-white">{{ overview?.bpjs_patients?.total || 0
+                                        }}</span>
+                                    <span class="text-sm text-gray-500 ml-1">Total Pasien</span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                                <!-- Status Sudah -->
+                                <div class="bg-[#111827] rounded-xl p-4 border border-gray-700">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-gray-400 text-sm">Status Sudah</span>
+                                        <i class="fas fa-check-circle text-frog-400"></i>
+                                    </div>
+                                    <div class="text-2xl font-bold text-frog-400 mt-2">{{
+                                        overview?.bpjs_patients?.status_sudah
+                                        || 0 }}</div>
+                                </div>
+
+                                <!-- Status Belum -->
+                                <div class="bg-[#111827] rounded-xl p-4 border border-gray-700">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-gray-400 text-sm">Status Belum</span>
+                                        <i class="fas fa-clock text-yellow-500"></i>
+                                    </div>
+                                    <div class="text-2xl font-bold text-yellow-500 mt-2">{{
+                                        overview?.bpjs_patients?.status_belum || 0 }}</div>
+                                </div>
+
+                                <!-- TaskID Terkirim -->
+                                <div class="bg-[#111827] rounded-xl p-4 border border-gray-700">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-gray-400 text-sm">TaskID Terkirim</span>
+                                        <i class="fas fa-paper-plane text-blue-400"></i>
+                                    </div>
+                                    <div class="text-2xl font-bold text-blue-400 mt-2">{{ overview?.task_id?.total_sent
+                                        || 0
+                                        }}
+                                    </div>
+                                </div>
+
+                                <!-- GoTrol Processed -->
+                                <div class="bg-[#111827] rounded-xl p-4 border border-gray-700">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-gray-400 text-sm">GoTrol Proses</span>
+                                        <i class="fas fa-frog text-frog-400"></i>
+                                    </div>
+                                    <div class="text-2xl font-bold text-white mt-2">{{ overview?.gotrol?.processed || 0
+                                        }}
+                                    </div>
+                                </div>
+
+                                <!-- Success Rate -->
+                                <div class="bg-[#111827] rounded-xl p-4 border border-frog-500/30">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-gray-400 text-sm">Success Rate</span>
+                                        <i class="fas fa-percentage text-frog-400"></i>
+                                    </div>
+                                    <div class="text-2xl font-bold text-frog-400 mt-2">{{
+                                        (overview?.task_id?.success_rate
+                                        ||
+                                        0).toFixed(1) }}%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Monthly Stats Card (30%) -->
+                        <div class="w-full lg:w-[30%]" v-for="(stat, key) in statsData" :key="key">
+                            <div
+                                class="bg-[#1f2937] rounded-2xl p-6 border border-gray-800 hover:border-frog-500/30 transition-all h-full relative overflow-hidden">
+
+                                <!-- Background Glow -->
+                                <div
+                                    class="absolute -right-6 -top-6 w-24 h-24 bg-frog-500/5 rounded-full blur-2xl group-hover:bg-frog-500/10 transition-all">
+                                </div>
+
+                                <div class="flex justify-between items-start mb-6 relative z-10">
+                                    <div>
+                                        <h3 class="text-gray-400 text-sm font-medium">{{ stat.title }}</h3>
+                                        <div class="mt-2 flex items-baseline">
+                                            <span class="text-3xl font-bold text-white tracking-tight">{{ stat.total
+                                                }}</span>
+                                            <span class="ml-2 text-sm text-gray-500">pasien</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="p-3 rounded-xl bg-[#111827] border border-gray-700 text-gray-400 group-hover:text-frog-400 group-hover:border-frog-500/30 transition-all">
+                                        <i :class="`fas ${stat.icon} text-lg`"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Progress Bar -->
+                                <div class="w-full bg-gray-800 rounded-full h-1.5 mb-5 overflow-hidden">
+                                    <div class="bg-frog-500 h-1.5 rounded-full transition-all duration-1000"
+                                        :style="`width: ${stat.successRate}%`"></div>
+                                </div>
+
+                                <!-- Footer Stats - Sudah / Belum -->
+                                <div
+                                    class="grid grid-cols-2 gap-2 text-center text-xs border-t border-gray-700/50 pt-4">
+                                    <div class="flex flex-col">
+                                        <span class="text-frog-400 font-bold text-base">{{ stat.sudah }}</span>
+                                        <span class="text-gray-500 mt-0.5">Sudah</span>
+                                    </div>
+                                    <div class="flex flex-col border-l border-gray-700/50">
+                                        <span class="text-yellow-500 font-bold text-base">{{ stat.belum }}</span>
+                                        <span class="text-gray-500 mt-0.5">Belum</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- End of flex wrapper -->
+
+                    <!-- Main Table Section -->
+                    <div class="bg-[#1f2937] rounded-2xl border border-gray-800 overflow-hidden shadow-xl">
+                        <div
+                            class="px-6 py-5 border-b border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 bg-[#1f2937]">
+                            <div class="flex items-center gap-4 w-full md:w-auto">
+                                <h3 class="text-lg font-semibold text-white flex items-center">
+                                    <i class="fas fa-list text-frog-400 mr-3"></i>
+                                    Daftar Antrean
+                                </h3>
+                                <div
+                                    class="px-3 py-1 rounded-full bg-gray-800 border border-gray-700 text-xs text-gray-400">
+                                    Total Data: <span class="font-bold text-white ml-1">{{ filteredItems.length
+                                        }}</span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-3 w-full md:w-auto">
+                                <!-- Search Box -->
+                                <div class="relative flex-grow md:flex-grow-0">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i class="fas fa-search text-gray-500"></i>
+                                    </div>
+                                    <input type="text" v-model="searchQuery" placeholder="Cari Pasien / RM..."
+                                        class="bg-[#111827] text-white pl-10 pr-4 py-2 border border-gray-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-frog-500 focus:border-transparent w-full md:w-64 transition-all">
+                                </div>
+
+                                <!-- Page Size Selector -->
+                                <select v-model="pageSize"
+                                    class="bg-[#111827] text-white border border-gray-700 rounded-lg text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-frog-500">
+                                    <option :value="10">10</option>
+                                    <option :value="25">25</option>
+                                    <option :value="50">50</option>
+                                    <option :value="100">100</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-800">
+                                <thead class="bg-[#111827]">
+                                    <tr>
+                                        <th scope="col"
+                                            class="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider w-1/4">
+                                            Pasien</th>
+                                        <th scope="col"
+                                            class="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase tracking-wider w-1/2">
+                                            Task Timeline</th>
+                                        <th scope="col"
+                                            class="px-6 py-4 text-right text-xs font-semibold text-gray-400 uppercase tracking-wider w-1/4">
+                                            Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-800 bg-[#1f2937]">
+                                    <tr v-if="paginatedItems.length === 0">
+                                        <td colspan="3" class="px-6 py-16 text-center">
+                                            <div class="flex flex-col items-center justify-center text-gray-500">
+                                                <i class="fas fa-box-open text-5xl mb-4 opacity-20"></i>
+                                                <p class="text-sm">Tidak ada data ditemukan.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr v-for="item in paginatedItems" :key="item.NomorReferensi"
+                                        class="hover:bg-[#252f3f] transition-colors group">
+                                        <!-- Patient Info -->
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-start">
+                                                <div class="flex-shrink-0 mt-1">
+                                                    <div
+                                                        class="h-9 w-9 rounded-lg bg-gray-800 border border-gray-700 flex items-center justify-center text-frog-400 font-bold text-sm">
+                                                        {{ getInitials(item.NamaPasien) }}
+                                                    </div>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div
+                                                        class="text-sm font-medium text-white group-hover:text-frog-400 transition-colors">
+                                                        {{ item.NamaPasien }}</div>
+                                                    <div class="flex items-center mt-1 space-x-2">
+                                                        <span
+                                                            class="text-xs text-gray-500 bg-gray-800 px-1.5 py-0.5 rounded border border-gray-700 font-mono">{{
+                                                            item.NoRkmMedis }}</span>
+                                                        <span class="text-xs text-gray-500">{{ item.KodeBooking
+                                                            }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <!-- Timeline Visualization -->
+                                        <td class="px-6 py-4">
+                                            <div
+                                                class="relative flex items-center justify-between w-full max-w-md mx-auto h-8">
+                                                <div class="timeline-line"></div>
+
+                                                <!-- Task Points -->
+                                                <div v-for="id in 7" :key="id"
+                                                    class="relative z-10 flex flex-col items-center group/point">
+                                                    <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center text-[10px] font-bold transition-all duration-200 cursor-help"
+                                                        :class="getTaskClass(item.Tasks[id])">
+                                                        {{ id }}
+                                                    </div>
+
+                                                    <!-- Tooltip -->
+                                                    <div
+                                                        class="absolute bottom-full mb-3 hidden group-hover/point:block z-50 w-56 opacity-0 group-hover/point:opacity-100 transition-opacity duration-200 pointer-events-none">
+                                                        <div
+                                                            class="bg-gray-900 border border-gray-700 text-white text-xs rounded-xl p-3 shadow-2xl text-center relative">
+                                                            <div
+                                                                class="font-bold mb-1 text-frog-400 uppercase tracking-wide text-[10px]">
+                                                                Task {{ id }}</div>
+                                                            <div v-if="item.Tasks[id]" class="space-y-1">
+                                                                <div
+                                                                    class="text-white font-mono bg-gray-800 rounded px-2 py-1 inline-block">
+                                                                    {{ item.Tasks[id].Waktu }}</div>
+                                                                <div :class="item.Tasks[id].BPJSCode === 200 || item.Tasks[id].BPJSCode === 208 ? 'text-frog-400' : 'text-red-400'"
+                                                                    class="font-medium mt-1">
+                                                                    {{ item.Tasks[id].BPJSStatus }}
+                                                                    <span v-if="item.Tasks[id].BPJSCode"
+                                                                        class="opacity-75">({{ item.Tasks[id].BPJSCode
+                                                                        }})</span>
+                                                                </div>
+                                                                <div v-if="item.Tasks[id].Message"
+                                                                    class="mt-1 text-gray-400 text-[10px] leading-tight border-t border-gray-800 pt-1">
+                                                                    {{ item.Tasks[id].Message }}
+                                                                </div>
+                                                            </div>
+                                                            <div v-else class="text-gray-600 italic">Belum ada data
+                                                            </div>
+                                                            <!-- Triangle arrow -->
+                                                            <div
+                                                                class="absolute top-full left-1/2 -ml-2 border-8 border-transparent border-t-gray-900">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <!-- Status & Time -->
+                                        <td class="px-6 py-4 whitespace-nowrap text-right">
+                                            <div class="flex flex-col items-end space-y-1.5">
+                                                <span
+                                                    class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium border"
+                                                    :class="item.UpdateWaktuDone ? 'bg-frog-500/10 text-frog-400 border-frog-500/20' : 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20'">
+                                                    <span class="w-1.5 h-1.5 rounded-full mr-1.5"
+                                                        :class="item.UpdateWaktuDone ? 'bg-frog-500' : 'bg-yellow-500'"></span>
+                                                    {{ item.UpdateWaktuDone ? 'Selesai' : 'Pending' }}
+                                                </span>
+                                                <span class="text-xs text-gray-500 flex items-center font-mono">
+                                                    {{ formatTime(item.ProcessedAt) }}
+                                                </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Pagination Controls -->
+                        <div class="px-6 py-4 border-t border-gray-800 bg-[#1f2937] flex items-center justify-between">
+                            <div class="text-sm text-gray-400">
+                                Menampilkan <span class="font-medium text-white">{{ (currentPage - 1) * pageSize + 1
+                                    }}</span>
+                                sampai <span class="font-medium text-white">{{ Math.min(currentPage * pageSize,
+                                    filteredItems.length) }}</span>
+                                dari <span class="font-medium text-white">{{ filteredItems.length }}</span> data
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <button @click="prevPage" :disabled="currentPage === 1"
+                                    class="px-3 py-1 rounded-lg border border-gray-700 text-sm font-medium text-gray-400 hover:text-white hover:border-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all">
+                                    Previous
+                                </button>
+                                <span class="text-sm text-gray-400 px-2">Page {{ currentPage }} of {{ totalPages
+                                    }}</span>
+                                <button @click="nextPage" :disabled="currentPage === totalPages"
+                                    class="px-3 py-1 rounded-lg border border-gray-700 text-sm font-medium text-gray-400 hover:text-white hover:border-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    </div> <!-- End of flex wrapper -->
+
+                </div> <!-- End of Dashboard Content -->
+
+                <!-- Registration Report Page -->
+                <div v-if="currentPageView === 'registration'" class="space-y-6">
+                    <div class="bg-[#1f2937] rounded-2xl border border-gray-800 overflow-hidden shadow-xl">
+                        <div
+                            class="px-6 py-5 border-b border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 bg-[#1f2937]">
+                            <div class="flex items-center gap-4 w-full md:w-auto">
+                                <h3 class="text-lg font-semibold text-white flex items-center">
+                                    <i class="fas fa-clipboard-list text-frog-400 mr-3"></i>
+                                    Laporan Registrasi
+                                    <span class="ml-3 text-sm font-normal text-gray-400">
+                                        Total Data: <span class="text-frog-400 font-medium">{{ registrationData.total
+                                            }}</span>
+                                    </span>
+                                </h3>
+                            </div>
+                            <div class="flex items-center gap-3 w-full md:w-auto">
+                                <div class="relative flex-1 md:w-48">
+                                    <i
+                                        class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
+                                    <input type="text" placeholder="Cari Pasien / RM..." v-model="regSearch"
+                                        @input="regCurrentPage = 1"
+                                        class="w-full bg-[#111827] text-white pl-9 pr-4 py-2 rounded-lg border border-gray-700 text-sm focus:outline-none focus:ring-1 focus:ring-frog-500 focus:border-frog-500 transition-all">
+                                </div>
+                                <select v-model="regPageSize" @change="regCurrentPage = 1"
+                                    class="bg-[#111827] text-white px-3 py-2 rounded-lg border border-gray-700 text-sm focus:outline-none focus:ring-1 focus:ring-frog-500">
+                                    <option :value="10">10</option>
+                                    <option :value="25">25</option>
+                                    <option :value="50">50</option>
+                                    <option :value="100">100</option>
+                                </select>
+                                <button @click="fetchRegistration"
+                                    class="p-2 rounded-lg bg-frog-500 text-white hover:bg-frog-600 transition"
+                                    title="Refresh">
+                                    <i class="fas fa-sync-alt" :class="{ 'fa-spin': loading }"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm">
+                                <thead class="bg-[#111827] text-gray-400 uppercase text-xs">
+                                    <tr>
+                                        <th class="px-4 py-3 text-left">Pasien</th>
+                                        <th class="px-3 py-3 text-left">Poli</th>
+                                        <th class="px-3 py-3 text-left">Referensi</th>
+                                        <th class="px-3 py-3 text-center">Task Timeline</th>
+                                        <th class="px-3 py-3 text-right">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-800">
+                                    <tr v-for="(p, idx) in paginatedRegPatients" :key="p.no_rawat"
+                                        class="hover:bg-gray-800/50 transition-colors">
+
+                                        <!-- Pasien Column: Avatar + Name + Badges -->
+                                        <td class="px-4 py-4">
+                                            <div class="flex items-center space-x-3">
+                                                <div
+                                                    class="flex-shrink-0 w-10 h-10 rounded-full bg-frog-500/20 text-frog-400 flex items-center justify-center font-bold text-sm border border-frog-500/30">
+                                                    {{ getInitials(p.nama_pasien) }}
+                                                </div>
+                                                <div>
+                                                    <div class="text-white font-medium">{{ p.nama_pasien }}</div>
+                                                    <div class="flex items-center space-x-2 mt-1">
+                                                        <span
+                                                            class="text-[10px] px-1.5 py-0.5 rounded bg-gray-700 text-gray-400">{{
+                                                            p.no_rkm_medis }}</span>
+                                                        <span
+                                                            class="text-[10px] px-1.5 py-0.5 rounded bg-frog-500/20 text-frog-400 font-mono">{{
+                                                            p.no_rawat }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <!-- Poli & Time -->
+                                        <td class="px-3 py-4">
+                                            <div class="text-gray-300 text-xs">{{ p.nama_poli }}</div>
+                                            <div class="text-gray-500 text-[10px] mt-0.5">{{ p.jam_reg }}</div>
+                                        </td>
+
+                                        <!-- Referensi -->
+                                        <td class="px-3 py-4">
+                                            <div class="text-blue-400 font-mono text-xs">{{ p.nomor_referensi || '-' }}
+                                            </div>
+                                            <div v-if="p.kodebooking"
+                                                class="text-gray-500 text-[10px] mt-0.5 font-mono">{{ p.kodebooking }}
+                                            </div>
+                                        </td>
+
+                                        <!-- Task Timeline -->
+                                        <td class="px-3 py-4">
+                                            <div class="flex items-center justify-center space-x-1.5">
+                                                <template v-for="t in 7" :key="t">
+                                                    <div v-if="getTaskWaktu(p.tasks, t)"
+                                                        class="w-7 h-7 rounded-full bg-frog-500 flex items-center justify-center cursor-pointer shadow-lg shadow-frog-500/30"
+                                                        :title="'Task ' + t + ': ' + getTaskWaktu(p.tasks, t)">
+                                                        <i class="fas fa-check text-white text-[10px]"></i>
+                                                    </div>
+                                                    <div v-else
+                                                        class="w-7 h-7 rounded-full bg-gray-700/50 border border-gray-600 flex items-center justify-center">
+                                                        <span class="text-gray-500 text-[10px] font-medium">{{ t
+                                                            }}</span>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </td>
+
+                                        <!-- Status -->
+                                        <td class="px-3 py-4 text-right">
+                                            <span v-if="p.status_kirim === 'Sudah'"
+                                                class="px-2.5 py-1 rounded-full bg-frog-500/20 text-frog-400 text-xs font-medium">
+                                                <i class="fas fa-check-circle mr-1"></i>Sudah
+                                            </span>
+                                            <span v-else
+                                                class="px-2.5 py-1 rounded-full bg-yellow-500/20 text-yellow-400 text-xs font-medium">
+                                                <i class="fas fa-clock mr-1"></i>Belum
+                                            </span>
+                                            <div class="text-gray-500 text-[10px] mt-1">{{
+                                                p.tgl_registrasi?.substring(0,10) }}</div>
+                                        </td>
+                                    </tr>
+                                    <tr v-if="!paginatedRegPatients.length">
+                                        <td colspan="5" class="px-4 py-12 text-center text-gray-500">
+                                            <i class="fas fa-inbox text-4xl mb-3 block opacity-50"></i>
+                                            <p class="text-sm">{{ regSearch ? 'Tidak ada data yang cocok dengan
+                                                pencarian' : 'Tidak ada data untuk tanggal ini' }}</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Pagination Footer -->
+                        <div class="px-6 py-4 border-t border-gray-800 flex justify-between items-center bg-[#111827]">
+                            <div class="text-sm text-gray-400">
+                                Menampilkan {{ paginatedRegPatients.length }} dari {{ filteredRegPatients.length }}
+                                pasien
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button @click="regPrevPage" :disabled="regCurrentPage === 1"
+                                    class="px-3 py-1 rounded-lg border border-gray-700 text-sm font-medium text-gray-400 hover:text-white hover:border-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all">
+                                    Previous
+                                </button>
+                                <span class="text-sm text-gray-400 px-2">Page {{ regCurrentPage }} of {{ regTotalPages
+                                    }}</span>
+                                <button @click="regNextPage" :disabled="regCurrentPage === regTotalPages"
+                                    class="px-3 py-1 rounded-lg border border-gray-700 text-sm font-medium text-gray-400 hover:text-white hover:border-gray-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref, onMounted, computed, watch } = Vue;
+
+        createApp({
+            setup() {
+                // Initialize state from LocalStorage if available
+                const savedSummary = localStorage.getItem('gotrol_summary');
+                const savedDailyReport = localStorage.getItem('gotrol_daily_report');
+                const savedDate = localStorage.getItem('gotrol_selected_date');
+
+                const summary = ref(savedSummary ? JSON.parse(savedSummary) : {});
+                const dailyReport = ref(savedDailyReport ? JSON.parse(savedDailyReport) : {});
+                // Default to today if no saved date, or use saved date
+                const selectedDate = ref(savedDate || new Date().toISOString().split('T')[0]);
+
+                const serverStatus = ref(null);
+                const overview = ref(null);
+                const monthlyData = ref(null);
+                const loading = ref(false);
+                const currentPageView = ref('dashboard'); // 'dashboard' or 'registration'
+                const registrationData = ref({ patients: [], total: 0, date: '' });
+
+                // Registration page state
+                const regSearch = ref('');
+                const regPageSize = ref(10);
+                const regCurrentPage = ref(1);
+
+                // Pagination & Search State - now controlled by server
+                const searchQuery = ref('');
+                const pageSize = ref(10);
+                const currentPage = ref(1);
+                const totalItems = ref(0);
+                const totalPages = ref(1);
+                const searchTimeout = ref(null);
+
+                // Stats Data - now using data from /api/patients/monthly
+                const statsData = computed(() => {
+                    const m = monthlyData.value;
+                    const total = m?.total_patients || 0;
+                    const sudah = m?.status?.sudah || 0;
+                    const belum = m?.status?.belum || 0;
+                    const successRate = total > 0 ? Math.round((sudah / total) * 100) : 0;
+
+                    return {
+                        this_month: {
+                            title: m?.month_name ? `${m.month_name} ${m.year}` : 'Bulan Ini',
+                            icon: 'fa-calendar-alt',
+                            total: total,
+                            sudah: sudah,
+                            belum: belum,
+                            successRate: successRate
+                        }
+                    };
+                });
+
+                // Items now come directly from server (already paginated)
+                const filteredItems = computed(() => dailyReport.value?.items || []);
+                const paginatedItems = computed(() => dailyReport.value?.items || []);
+
+                // Registration filtering and pagination
+                const filteredRegPatients = computed(() => {
+                    const patients = registrationData.value?.patients || [];
+                    if (!regSearch.value) return patients;
+                    const query = regSearch.value.toLowerCase();
+                    return patients.filter(p =>
+                        p.nama_pasien?.toLowerCase().includes(query) ||
+                        p.no_rkm_medis?.toLowerCase().includes(query) ||
+                        p.no_rawat?.toLowerCase().includes(query) ||
+                        p.nomor_referensi?.toLowerCase().includes(query)
+                    );
+                });
+
+                const regTotalPages = computed(() => Math.ceil(filteredRegPatients.value.length / regPageSize.value) || 1);
+
+                const paginatedRegPatients = computed(() => {
+                    const start = (regCurrentPage.value - 1) * regPageSize.value;
+                    return filteredRegPatients.value.slice(start, start + regPageSize.value);
+                });
+
+                const regNextPage = () => { if (regCurrentPage.value < regTotalPages.value) regCurrentPage.value++; };
+                const regPrevPage = () => { if (regCurrentPage.value > 1) regCurrentPage.value--; };
+
+                // Pagination functions - now trigger server fetch
+                const nextPage = () => {
+                    if (currentPage.value < totalPages.value) {
+                        currentPage.value++;
+                        fetchDailyReport();
+                    }
+                };
+
+                const prevPage = () => {
+                    if (currentPage.value > 1) {
+                        currentPage.value--;
+                        fetchDailyReport();
+                    }
+                };
+
+                // Debounced search - wait 300ms after typing stops
+                watch(searchQuery, () => {
+                    if (searchTimeout.value) clearTimeout(searchTimeout.value);
+                    searchTimeout.value = setTimeout(() => {
+                        currentPage.value = 1;
+                        fetchDailyReport();
+                    }, 300);
+                });
+
+                // Reset page when page size changes
+                watch(pageSize, () => {
+                    currentPage.value = 1;
+                    fetchDailyReport();
+                });
+
+                const fetchStatus = async () => {
+                    try {
+                        const res = await fetch('/api/status');
+                        serverStatus.value = await res.json();
+                    } catch (e) {
+                        serverStatus.value = { status: 'offline', version: '-' };
+                    }
+                };
+
+                const fetchSummary = async () => {
+                    try {
+                        const res = await fetch('/api/reports/summary');
+                        const data = await res.json();
+                        summary.value = data;
+                        localStorage.setItem('gotrol_summary', JSON.stringify(data));
+                    } catch (e) { console.error(e); }
+                };
+
+                const fetchDailyReport = async () => {
+                    try {
+                        loading.value = true;
+                        localStorage.setItem('gotrol_selected_date', selectedDate.value);
+
+                        // Build URL with pagination params
+                        const params = new URLSearchParams({
+                            date: selectedDate.value,
+                            page: currentPage.value,
+                            limit: pageSize.value
+                        });
+                        if (searchQuery.value) {
+                            params.append('search', searchQuery.value);
+                        }
+
+                        const res = await fetch(`/api/reports?${params}`);
+                        const data = await res.json();
+                        dailyReport.value = data;
+
+                        // Update pagination state from server response
+                        if (data.pagination) {
+                            totalItems.value = data.pagination.total_items;
+                            totalPages.value = data.pagination.total_pages;
+                        }
+
+                        localStorage.setItem('gotrol_daily_report', JSON.stringify(data));
+                    } catch (e) { console.error(e); } finally {
+                        loading.value = false;
+                    }
+                };
+
+                // Watch for date changes
+                watch(selectedDate, () => {
+                    currentPage.value = 1;
+                    fetchDailyReport();
+                    fetchOverview();
+                });
+
+                const fetchOverview = async () => {
+                    try {
+                        const res = await fetch(`/api/stats/overview?date=${selectedDate.value}`);
+                        overview.value = await res.json();
+                    } catch (e) { console.error(e); }
+                };
+
+                const fetchMonthlyData = async () => {
+                    try {
+                        const now = new Date();
+                        const res = await fetch(`/api/patients/monthly?year=${now.getFullYear()}&month=${now.getMonth() + 1}`);
+                        monthlyData.value = await res.json();
+                    } catch (e) { console.error(e); }
+                };
+
+                const fetchRegistration = async () => {
+                    try {
+                        loading.value = true;
+                        const res = await fetch(`/api/patients/registration?date=${selectedDate.value}`);
+                        registrationData.value = await res.json();
+                    } catch (e) { console.error(e); }
+                    finally { loading.value = false; }
+                };
+
+                const fetchData = async () => {
+                    await Promise.all([fetchStatus(), fetchSummary(), fetchDailyReport(), fetchOverview(), fetchMonthlyData()]);
+                };
+
+                const formatTime = (dateStr) => {
+                    if (!dateStr) return '-';
+                    const date = new Date(dateStr);
+                    return date.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+                };
+
+                const getInitials = (name) => {
+                    if (!name) return '?';
+                    return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+                };
+
+                const getTaskClass = (task) => {
+                    if (!task) return 'bg-[#111827] border-gray-700 text-gray-700'; // Empty state
+                    if (task.BPJSCode === 200 || task.BPJSCode === 208) {
+                        return 'bg-frog-500 border-frog-500 text-white shadow-[0_0_10px_rgba(34,197,94,0.4)]'; // Success glow
+                    }
+                    return 'bg-red-500 border-red-500 text-white shadow-[0_0_10px_rgba(239,68,68,0.4)]'; // Error glow
+                };
+
+                // Helper for registration task timeline
+                const getTaskWaktu = (tasks, taskId) => {
+                    if (!tasks) return null;
+                    const task = tasks.find(t => t.task_id === taskId);
+                    return task?.waktu || null;
+                };
+
+                onMounted(() => {
+                    fetchData();
+                    setInterval(fetchData, 30000);
+                });
+
+                return {
+                    summary,
+                    statsData,
+                    dailyReport,
+                    selectedDate,
+                    serverStatus,
+                    overview,
+                    monthlyData,
+                    loading,
+                    searchQuery,
+                    pageSize,
+                    currentPage,
+                    currentPageView,
+                    registrationData,
+                    totalPages,
+                    totalItems,
+                    filteredItems,
+                    paginatedItems,
+                    nextPage,
+                    prevPage,
+                    fetchData,
+                    fetchDailyReport,
+                    fetchRegistration,
+                    formatTime,
+                    getInitials,
+                    getTaskClass,
+                    // Registration
+                    regSearch,
+                    regPageSize,
+                    regCurrentPage,
+                    regTotalPages,
+                    filteredRegPatients,
+                    paginatedRegPatients,
+                    regNextPage,
+                    regPrevPage,
+                    getTaskWaktu
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>

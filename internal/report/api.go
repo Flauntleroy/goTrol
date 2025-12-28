@@ -40,6 +40,7 @@ func (a *APIServer) Start() error {
 	mux.HandleFunc("/api/reports/summary", a.handleReportsSummary)
 	mux.HandleFunc("/api/stats/overview", a.handleStatsOverview)
 	mux.HandleFunc("/api/patients/monthly", a.handlePatientsMonthly)
+	mux.HandleFunc("/api/patients/registration", a.handlePatientsRegistration)
 
 	// Serve static files (UI)
 	// Make sure to use absolute path or correct relative path depending on execution context
@@ -273,7 +274,7 @@ func (a *APIServer) getTotalBPJSPatients(date string) int {
 		JOIN penjab pj ON rp.kd_pj = pj.kd_pj
 		WHERE mar.tanggal_periksa = ?
 			AND mar.kodebooking != ''
-			AND pj.png_jawab LIKE '%BPJS%'
+			AND rp.kd_pj = 'BPJ'
 	`, date).Scan(&count)
 	return count
 }
@@ -289,7 +290,7 @@ func (a *APIServer) getTotalBPJSPatientsRange(startDate, endDate string) int {
 		JOIN penjab pj ON rp.kd_pj = pj.kd_pj
 		WHERE mar.tanggal_periksa BETWEEN ? AND ?
 			AND mar.kodebooking != ''
-			AND pj.png_jawab LIKE '%BPJS%'
+			AND rp.kd_pj = 'BPJ'
 	`, startDate, endDate).Scan(&count)
 	return count
 }
@@ -311,11 +312,11 @@ func (a *APIServer) handleStatsOverview(w http.ResponseWriter, r *http.Request) 
 		SELECT COUNT(DISTINCT mar.nomor_referensi)
 		FROM mlite_antrian_referensi mar
 		JOIN reg_periksa rp ON mar.no_rkm_medis = rp.no_rkm_medis 
-			AND mar.tanggal_periksa = rp.tgl_registrasi
+AND DATE(rp.tgl_registrasi) = mar.tanggal_periksa
 		JOIN penjab pj ON rp.kd_pj = pj.kd_pj
 		WHERE mar.tanggal_periksa = ?
 			AND mar.kodebooking != ''
-			AND pj.png_jawab LIKE '%BPJS%'
+			AND rp.kd_pj = 'BPJ'
 	`, date).Scan(&totalBPJS)
 
 	// Status "Sudah" - already sent via old system
@@ -323,11 +324,11 @@ func (a *APIServer) handleStatsOverview(w http.ResponseWriter, r *http.Request) 
 		SELECT COUNT(DISTINCT mar.nomor_referensi)
 		FROM mlite_antrian_referensi mar
 		JOIN reg_periksa rp ON mar.no_rkm_medis = rp.no_rkm_medis 
-			AND mar.tanggal_periksa = rp.tgl_registrasi
+AND DATE(rp.tgl_registrasi) = mar.tanggal_periksa
 		JOIN penjab pj ON rp.kd_pj = pj.kd_pj
 		WHERE mar.tanggal_periksa = ?
 			AND mar.kodebooking != ''
-			AND pj.png_jawab LIKE '%BPJS%'
+			AND rp.kd_pj = 'BPJ'
 			AND mar.status_kirim = 'Sudah'
 	`, date).Scan(&statusSudah)
 
@@ -336,11 +337,11 @@ func (a *APIServer) handleStatsOverview(w http.ResponseWriter, r *http.Request) 
 		SELECT COUNT(DISTINCT mar.nomor_referensi)
 		FROM mlite_antrian_referensi mar
 		JOIN reg_periksa rp ON mar.no_rkm_medis = rp.no_rkm_medis 
-			AND mar.tanggal_periksa = rp.tgl_registrasi
+AND DATE(rp.tgl_registrasi) = mar.tanggal_periksa
 		JOIN penjab pj ON rp.kd_pj = pj.kd_pj
 		WHERE mar.tanggal_periksa = ?
 			AND mar.kodebooking != ''
-			AND pj.png_jawab LIKE '%BPJS%'
+			AND rp.kd_pj = 'BPJ'
 			AND (mar.status_kirim = 'Belum' OR mar.status_kirim IS NULL OR mar.status_kirim = '')
 	`, date).Scan(&statusBelum)
 
@@ -410,74 +411,42 @@ func (a *APIServer) handlePatientsMonthly(w http.ResponseWriter, r *http.Request
 	startStr := startDate.Format("2006-01-02")
 	endStr := endDate.Format("2006-01-02")
 
-	// Query: Total BPJS patients for the month
+	log.Printf("DEBUG Monthly API: Querying %s to %s", startStr, endStr)
+
+	// Fast query: Total patients - NO JOIN, query directly from mlite_antrian_referensi
+	// All records with kodebooking are BPJS patients
 	var totalPatients int
-	a.db.DB.QueryRow(`
-		SELECT COUNT(DISTINCT mar.nomor_referensi)
-		FROM mlite_antrian_referensi mar
-		JOIN reg_periksa rp ON mar.no_rkm_medis = rp.no_rkm_medis 
-			AND mar.tanggal_periksa = rp.tgl_registrasi
-		JOIN penjab pj ON rp.kd_pj = pj.kd_pj
-		WHERE mar.tanggal_periksa BETWEEN ? AND ?
-			AND mar.kodebooking != ''
-			AND pj.png_jawab LIKE '%BPJS%'
+	err := a.db.DB.QueryRow(`
+		SELECT COUNT(DISTINCT nomor_referensi)
+		FROM mlite_antrian_referensi
+		WHERE tanggal_periksa BETWEEN ? AND ?
+			AND kodebooking != ''
 	`, startStr, endStr).Scan(&totalPatients)
-
-	// Query: Daily breakdown
-	type DailyCount struct {
-		Date  string `json:"date"`
-		Count int    `json:"count"`
-	}
-	var dailyBreakdown []DailyCount
-
-	rows, err := a.db.DB.Query(`
-		SELECT mar.tanggal_periksa, COUNT(DISTINCT mar.nomor_referensi) as cnt
-		FROM mlite_antrian_referensi mar
-		JOIN reg_periksa rp ON mar.no_rkm_medis = rp.no_rkm_medis 
-			AND mar.tanggal_periksa = rp.tgl_registrasi
-		JOIN penjab pj ON rp.kd_pj = pj.kd_pj
-		WHERE mar.tanggal_periksa BETWEEN ? AND ?
-			AND mar.kodebooking != ''
-			AND pj.png_jawab LIKE '%BPJS%'
-		GROUP BY mar.tanggal_periksa
-		ORDER BY mar.tanggal_periksa
-	`, startStr, endStr)
-
-	if err == nil {
-		defer rows.Close()
-		for rows.Next() {
-			var dc DailyCount
-			if err := rows.Scan(&dc.Date, &dc.Count); err == nil {
-				dailyBreakdown = append(dailyBreakdown, dc)
-			}
-		}
+	if err != nil {
+		log.Printf("DEBUG Monthly API - Total error: %v", err)
 	}
 
-	// Query: Status counts (Sudah vs Belum)
-	var statusSudah, statusBelum int
+	// Count status Sudah - NO JOIN
+	var statusSudah int
 	a.db.DB.QueryRow(`
-		SELECT COUNT(DISTINCT mar.nomor_referensi)
-		FROM mlite_antrian_referensi mar
-		JOIN reg_periksa rp ON mar.no_rkm_medis = rp.no_rkm_medis 
-			AND mar.tanggal_periksa = rp.tgl_registrasi
-		JOIN penjab pj ON rp.kd_pj = pj.kd_pj
-		WHERE mar.tanggal_periksa BETWEEN ? AND ?
-			AND mar.kodebooking != ''
-			AND pj.png_jawab LIKE '%BPJS%'
-			AND mar.status_kirim = 'Sudah'
+		SELECT COUNT(DISTINCT nomor_referensi)
+		FROM mlite_antrian_referensi
+		WHERE tanggal_periksa BETWEEN ? AND ?
+			AND kodebooking != ''
+			AND status_kirim = 'Sudah'
 	`, startStr, endStr).Scan(&statusSudah)
 
+	// Count status Belum - NO JOIN
+	var statusBelum int
 	a.db.DB.QueryRow(`
-		SELECT COUNT(DISTINCT mar.nomor_referensi)
-		FROM mlite_antrian_referensi mar
-		JOIN reg_periksa rp ON mar.no_rkm_medis = rp.no_rkm_medis 
-			AND mar.tanggal_periksa = rp.tgl_registrasi
-		JOIN penjab pj ON rp.kd_pj = pj.kd_pj
-		WHERE mar.tanggal_periksa BETWEEN ? AND ?
-			AND mar.kodebooking != ''
-			AND pj.png_jawab LIKE '%BPJS%'
-			AND (mar.status_kirim = 'Belum' OR mar.status_kirim IS NULL OR mar.status_kirim = '')
+		SELECT COUNT(DISTINCT nomor_referensi)
+		FROM mlite_antrian_referensi
+		WHERE tanggal_periksa BETWEEN ? AND ?
+			AND kodebooking != ''
+			AND (status_kirim = 'Belum' OR status_kirim IS NULL OR status_kirim = '')
 	`, startStr, endStr).Scan(&statusBelum)
+
+	log.Printf("DEBUG Monthly API Result: Total=%d, Sudah=%d, Belum=%d", totalPatients, statusSudah, statusBelum)
 
 	response := map[string]interface{}{
 		"year":       year,
@@ -492,7 +461,184 @@ func (a *APIServer) handlePatientsMonthly(w http.ResponseWriter, r *http.Request
 			"sudah": statusSudah,
 			"belum": statusBelum,
 		},
-		"daily_breakdown": dailyBreakdown,
+	}
+
+	json.NewEncoder(w).Encode(response)
+}
+
+// handlePatientsRegistration returns patient registration data with referensi and task timeline
+func (a *APIServer) handlePatientsRegistration(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	// Get date from query param (default: today)
+	date := r.URL.Query().Get("date")
+	if date == "" {
+		date = time.Now().Format("2006-01-02")
+	}
+
+	// Pagination params
+	page := 1
+	limit := 10
+	if p := r.URL.Query().Get("page"); p != "" {
+		if pInt, err := strconv.Atoi(p); err == nil && pInt > 0 {
+			page = pInt
+		}
+	}
+	if l := r.URL.Query().Get("limit"); l != "" {
+		if lInt, err := strconv.Atoi(l); err == nil && lInt > 0 && lInt <= 100 {
+			limit = lInt
+		}
+	}
+
+	// Search query
+	searchQuery := strings.TrimSpace(r.URL.Query().Get("search"))
+
+	log.Printf("DEBUG Registration API: date=%s, page=%d, limit=%d, search=%s", date, page, limit, searchQuery)
+
+	// Build the base query with optional search filter
+	baseQuery := `
+		FROM reg_periksa 
+		INNER JOIN pasien ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis 
+		INNER JOIN dokter ON reg_periksa.kd_dokter = dokter.kd_dokter 
+		INNER JOIN poliklinik ON reg_periksa.kd_poli = poliklinik.kd_poli 
+		INNER JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj 
+		LEFT JOIN mlite_antrian_referensi mar ON mar.no_rkm_medis = pasien.no_rkm_medis 
+			AND mar.tanggal_periksa = reg_periksa.tgl_registrasi
+		WHERE reg_periksa.tgl_registrasi = ?
+			AND reg_periksa.kd_pj = 'BPJ'
+	`
+
+	args := []interface{}{date}
+
+	if searchQuery != "" {
+		baseQuery += ` AND (pasien.nm_pasien LIKE ? OR pasien.no_rkm_medis LIKE ? OR COALESCE(mar.nomor_referensi, '') LIKE ?)`
+		searchPattern := "%" + searchQuery + "%"
+		args = append(args, searchPattern, searchPattern, searchPattern)
+	}
+
+	// Count total for pagination
+	countQuery := "SELECT COUNT(*) " + baseQuery
+	var totalItems int
+	if err := a.db.DB.QueryRow(countQuery, args...).Scan(&totalItems); err != nil {
+		log.Printf("ERROR Registration count query: %v", err)
+		totalItems = 0
+	}
+
+	// Main query - get patient registration with joins
+	query := `
+		SELECT 
+			pasien.no_peserta,
+			pasien.no_rkm_medis,
+			pasien.nm_pasien,
+			reg_periksa.no_rawat,
+			reg_periksa.tgl_registrasi,
+			reg_periksa.jam_reg,
+			poliklinik.nm_poli,
+			dokter.nm_dokter,
+			penjab.png_jawab,
+			COALESCE(mar.nomor_referensi, '') as nomor_referensi,
+			COALESCE(mar.kodebooking, '') as kodebooking,
+			COALESCE(mar.status_kirim, '') as status_kirim
+	` + baseQuery + `
+		ORDER BY reg_periksa.jam_reg ASC
+		LIMIT ? OFFSET ?
+	`
+
+	offset := (page - 1) * limit
+	paginatedArgs := append(args, limit, offset)
+
+	rows, err := a.db.DB.Query(query, paginatedArgs...)
+	if err != nil {
+		log.Printf("ERROR Registration query: %v", err)
+		http.Error(w, "Database error", http.StatusInternalServerError)
+		return
+	}
+	defer rows.Close()
+
+	type TaskTime struct {
+		TaskID int    `json:"task_id"`
+		Waktu  string `json:"waktu"`
+	}
+
+	type PatientReg struct {
+		NoPeserta      string     `json:"no_peserta"`
+		NoRKMMedis     string     `json:"no_rkm_medis"`
+		NamaPasien     string     `json:"nama_pasien"`
+		NoRawat        string     `json:"no_rawat"`
+		TglRegistrasi  string     `json:"tgl_registrasi"`
+		JamReg         string     `json:"jam_reg"`
+		NamaPoli       string     `json:"nama_poli"`
+		NamaDokter     string     `json:"nama_dokter"`
+		Penjamin       string     `json:"penjamin"`
+		NomorReferensi string     `json:"nomor_referensi"`
+		KodeBooking    string     `json:"kodebooking"`
+		StatusKirim    string     `json:"status_kirim"`
+		Tasks          []TaskTime `json:"tasks"`
+	}
+
+	var patients []PatientReg
+
+	for rows.Next() {
+		var p PatientReg
+		var jamReg []byte
+		err := rows.Scan(
+			&p.NoPeserta, &p.NoRKMMedis, &p.NamaPasien, &p.NoRawat,
+			&p.TglRegistrasi, &jamReg, &p.NamaPoli, &p.NamaDokter,
+			&p.Penjamin, &p.NomorReferensi, &p.KodeBooking, &p.StatusKirim,
+		)
+		if err != nil {
+			log.Printf("ERROR scan: %v", err)
+			continue
+		}
+		p.JamReg = string(jamReg)
+
+		// Get task times for this patient
+		if p.NomorReferensi != "" {
+			taskRows, err := a.db.DB.Query(`
+				SELECT taskid, waktu 
+				FROM mlite_antrian_referensi_taskid 
+				WHERE nomor_referensi = ? 
+				ORDER BY taskid
+			`, p.NomorReferensi)
+			if err == nil {
+				defer taskRows.Close()
+				for taskRows.Next() {
+					var taskID int
+					var waktuMs int64
+					if err := taskRows.Scan(&taskID, &waktuMs); err == nil {
+						// Convert ms timestamp to datetime string
+						waktuStr := ""
+						if waktuMs > 0 {
+							t := time.Unix(waktuMs/1000, (waktuMs%1000)*1000000)
+							waktuStr = t.Format("15:04:05")
+						}
+						p.Tasks = append(p.Tasks, TaskTime{TaskID: taskID, Waktu: waktuStr})
+					}
+				}
+			}
+		}
+
+		patients = append(patients, p)
+	}
+
+	log.Printf("DEBUG Registration Result: total=%d patients (page %d)", len(patients), page)
+
+	// Calculate total pages
+	totalPages := (totalItems + limit - 1) / limit
+	if totalPages == 0 {
+		totalPages = 1
+	}
+
+	response := map[string]interface{}{
+		"date":     date,
+		"total":    totalItems,
+		"patients": patients,
+		"pagination": map[string]interface{}{
+			"page":        page,
+			"limit":       limit,
+			"total_items": totalItems,
+			"total_pages": totalPages,
+		},
 	}
 
 	json.NewEncoder(w).Encode(response)

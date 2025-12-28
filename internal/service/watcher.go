@@ -127,7 +127,7 @@ func (w *Watcher) fetchPendingEntries() ([]models.AntrianReferensi, error) {
 		WHERE mar.tanggal_periksa = ?
 			AND mar.status_kirim = 'Sudah'
 			AND mar.kodebooking != ''
-			AND pj.png_jawab LIKE '%BPJS%'
+			AND rp.kd_pj = 'BPJ'
 			AND NOT EXISTS (
 				SELECT 1 FROM mlite_antrian_referensi_taskid t 
 				WHERE t.nomor_referensi = mar.nomor_referensi 
@@ -313,7 +313,7 @@ func (w *Watcher) getTaskTimesFromSources(entry models.AntrianReferensi) ([7]*ti
 	// First, get default time from reg_periksa using no_rawat (tgl_registrasi + jam_reg)
 	var tglReg, jamReg sql.NullString
 	var defaultTime *time.Time
-	
+
 	if entry.NoRawat != "" {
 		err := w.db.DB.QueryRow(`
 			SELECT tgl_registrasi, jam_reg FROM reg_periksa 
@@ -331,7 +331,7 @@ func (w *Watcher) getTaskTimesFromSources(entry models.AntrianReferensi) ([7]*ti
 		}
 	}
 
-	// If no default time, try parsing from TanggalPeriksa with 08:00 
+	// If no default time, try parsing from TanggalPeriksa with 08:00
 	if defaultTime == nil {
 		if t, err := time.ParseInLocation("2006-01-02 15:04:05", tanggal+" 08:00:00", loc); err == nil {
 			defaultTime = &t

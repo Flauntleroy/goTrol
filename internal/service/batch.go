@@ -42,7 +42,7 @@ func (b *BatchHandler) BatchAutoOrder(date string) (int, int, error) {
 	successCount := 0
 	for idx, entry := range entries {
 		startTime := time.Now()
-		
+
 		// Extract date for display
 		tanggal := entry.TanggalPeriksa
 		if len(tanggal) >= 10 {
@@ -325,7 +325,7 @@ func (b *BatchHandler) BatchAll(date string) (int, int, error) {
 
 		elapsed := time.Since(startTime)
 		log.Printf("   ✓ Done in %.1fs", elapsed.Seconds())
-		
+
 		if allSuccess {
 			successCount++
 		}
@@ -359,7 +359,7 @@ func (b *BatchHandler) fetchAllBPJSEntries(date string) ([]models.AntrianReferen
 		LEFT JOIN poliklinik pol ON rp.kd_poli = pol.kd_poli
 		WHERE mar.tanggal_periksa = ?
 			AND mar.kodebooking != ''
-			AND pj.png_jawab LIKE '%BPJS%'
+			AND rp.kd_pj = 'BPJ'
 		ORDER BY rp.jam_reg ASC
 	`
 	return b.executeQuery(query, date)
@@ -387,7 +387,7 @@ func (b *BatchHandler) fetchEntriesWithTaskIDs(date string) ([]models.AntrianRef
 		LEFT JOIN penjab pj ON rp.kd_pj = pj.kd_pj
 		WHERE mar.tanggal_periksa = ?
 			AND mar.kodebooking != ''
-			AND pj.png_jawab LIKE '%BPJS%'
+			AND rp.kd_pj = 'BPJ'
 			AND EXISTS (SELECT 1 FROM mlite_antrian_referensi_taskid t WHERE t.nomor_referensi = mar.nomor_referensi)
 		ORDER BY rp.jam_reg ASC
 	`
