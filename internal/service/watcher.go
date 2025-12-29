@@ -3,9 +3,9 @@ package service
 import (
 	"database/sql"
 	"fmt"
-	"strings"
-	"math/rand"
 	"log"
+	"math/rand"
+	"strings"
 	"time"
 
 	"gotrol/internal/bpjs"
@@ -130,11 +130,18 @@ func (w *Watcher) fetchPendingEntries() ([]models.AntrianReferensi, error) {
 			AND mar.status_kirim = 'Sudah'
 			AND mar.kodebooking != ''
 			AND rp.kd_pj = 'BPJ'
-			AND NOT EXISTS (
-				SELECT 1 FROM mlite_antrian_referensi_taskid t 
-				WHERE t.nomor_referensi = mar.nomor_referensi 
-				AND t.status = 'Sudah'
-				AND t.taskid = 5
+			AND (
+				-- No task records yet
+				NOT EXISTS (
+					SELECT 1 FROM mlite_antrian_referensi_taskid t 
+					WHERE t.nomor_referensi = mar.nomor_referensi
+				)
+				OR
+				-- Has incomplete tasks (1-5 not all Sudah)
+				(SELECT COUNT(*) FROM mlite_antrian_referensi_taskid t 
+				 WHERE t.nomor_referensi = mar.nomor_referensi 
+				   AND t.taskid IN (1,2,3,4,5) 
+				   AND t.status = 'Sudah') < 5
 			)
 		ORDER BY rp.jam_reg ASC
 	`
@@ -211,8 +218,23 @@ func (w *Watcher) processEntry(entry models.AntrianReferensi) {
 	// Step 4: Send to BPJS
 	allSuccess := true
 	lastAcceptedMs := w.getMaxSentTime(entry.NomorReferensi)
+	completedTasks := w.getCompletedTaskIDs(entry.NomorReferensi)
+
 	for i := 0; i < 7; i++ {
 		taskNum := i + 1
+
+		// Skip if already completed in DB
+		if completedTasks[taskNum] {
+			result.Tasks[taskNum] = models.TaskResult{
+				Waktu:      "",
+				BPJSStatus: "skipped",
+				Message:    "Already Sudah",
+			}
+			log.Printf("   ├── Task %d: Skipped (already Sudah)", taskNum)
+			continue
+		}
+
+		// Skip if no data for this task
 		if orderedTasks[i] == nil {
 			result.Tasks[taskNum] = models.TaskResult{
 				Waktu:      "",
@@ -239,51 +261,63 @@ func (w *Watcher) processEntry(entry models.AntrianReferensi) {
 			log.Printf("   ├── BPJS Task %d: ❌ Error: %v", taskNum, err)
 		} else {
 			taskResult.BPJSCode = resp.Metadata.Code
+			msgLower := strings.ToLower(resp.Metadata.Message)
+
 			if resp.IsSuccess() {
 				taskResult.BPJSStatus = "success"
 				log.Printf("   ├── BPJS Task %d: 200 OK ✓", taskNum)
-				// Update status in database
 				w.updateTaskStatus(entry.NomorReferensi, taskNum, "Sudah")
 				lastAcceptedMs = waktuMs
-			} else {
-				msgLower := strings.ToLower(resp.Metadata.Message)
-				if strings.Contains(msgLower, "tidak boleh kurang atau sama") {
-					delta := int64(3_600_000)
-					waktuMsRetry := maxInt64(waktuMs, lastAcceptedMs) + delta
-					nextMinMs := int64(0)
-					for k := i + 1; k < 7; k++ {
-						if orderedTasks[k] != nil {
-							m := TimeToMillis(orderedTasks[k])
-							if nextMinMs == 0 || m < nextMinMs {
-								nextMinMs = m
-							}
+			} else if resp.Metadata.Code == 208 && strings.Contains(msgLower, "sudah ada") {
+				// BPJS says task already exists - treat as success
+				taskResult.BPJSStatus = "success"
+				taskResult.Message = resp.Metadata.Message
+				log.Printf("   ├── BPJS Task %d: 208 Sudah ada ✓", taskNum)
+				w.updateTaskStatus(entry.NomorReferensi, taskNum, "Sudah")
+				lastAcceptedMs = waktuMs
+			} else if strings.Contains(msgLower, "tidak boleh kurang atau sama") {
+				delta := int64(3_600_000)
+				waktuMsRetry := maxInt64(waktuMs, lastAcceptedMs) + delta
+				nextMinMs := int64(0)
+				for k := i + 1; k < 7; k++ {
+					if orderedTasks[k] != nil {
+						m := TimeToMillis(orderedTasks[k])
+						if nextMinMs == 0 || m < nextMinMs {
+							nextMinMs = m
 						}
 					}
-					if nextMinMs > 0 && waktuMsRetry >= nextMinMs {
-						orderedTasks = w.adjustForward(entry, orderedTasks, i, waktuMsRetry)
-					}
-					resp2, err2 := w.bpjsClient.UpdateWaktu(entry.KodeBooking, taskNum, waktuMsRetry)
-					if err2 == nil && resp2.IsSuccess() {
-						taskResult.BPJSCode = resp2.Metadata.Code
-						taskResult.BPJSStatus = "success"
-						taskResult.Message = ""
-						taskResult.Waktu = time.UnixMilli(waktuMsRetry).Format("2006-01-02 15:04:05")
-						w.updateTaskWaktu(entry.NomorReferensi, taskNum, waktuMsRetry)
-						w.updateTaskStatus(entry.NomorReferensi, taskNum, "Sudah")
-						log.Printf("   ├── BPJS Task %d: 200 OK ✓ (retry +1h)", taskNum)
-						lastAcceptedMs = waktuMsRetry
-					} else {
-						taskResult.BPJSStatus = "failed"
-						taskResult.Message = resp.Metadata.Message
-						allSuccess = false
-						log.Printf("   ├── BPJS Task %d: %d %s", taskNum, resp.Metadata.Code, resp.Metadata.Message)
-					}
+				}
+				if nextMinMs > 0 && waktuMsRetry >= nextMinMs {
+					orderedTasks = w.adjustForward(entry, orderedTasks, i, waktuMsRetry)
+				}
+				resp2, err2 := w.bpjsClient.UpdateWaktu(entry.KodeBooking, taskNum, waktuMsRetry)
+				if err2 == nil && resp2.IsSuccess() {
+					taskResult.BPJSCode = resp2.Metadata.Code
+					taskResult.BPJSStatus = "success"
+					taskResult.Message = ""
+					taskResult.Waktu = time.UnixMilli(waktuMsRetry).Format("2006-01-02 15:04:05")
+					w.updateTaskWaktu(entry.NomorReferensi, taskNum, waktuMsRetry)
+					w.updateTaskStatus(entry.NomorReferensi, taskNum, "Sudah")
+					log.Printf("   ├── BPJS Task %d: 200 OK ✓ (retry +1h)", taskNum)
+					lastAcceptedMs = waktuMsRetry
+				} else if err2 == nil && resp2.Metadata.Code == 208 && strings.Contains(strings.ToLower(resp2.Metadata.Message), "sudah ada") {
+					taskResult.BPJSCode = resp2.Metadata.Code
+					taskResult.BPJSStatus = "success"
+					taskResult.Message = resp2.Metadata.Message
+					w.updateTaskStatus(entry.NomorReferensi, taskNum, "Sudah")
+					log.Printf("   ├── BPJS Task %d: 208 Sudah ada ✓", taskNum)
+					lastAcceptedMs = waktuMsRetry
 				} else {
 					taskResult.BPJSStatus = "failed"
 					taskResult.Message = resp.Metadata.Message
 					allSuccess = false
 					log.Printf("   ├── BPJS Task %d: %d %s", taskNum, resp.Metadata.Code, resp.Metadata.Message)
 				}
+			} else {
+				taskResult.BPJSStatus = "failed"
+				taskResult.Message = resp.Metadata.Message
+				allSuccess = false
+				log.Printf("   ├── BPJS Task %d: %d %s", taskNum, resp.Metadata.Code, resp.Metadata.Message)
 			}
 		}
 		result.Tasks[taskNum] = taskResult
@@ -567,6 +601,7 @@ func (w *Watcher) getTaskTimesFromSources(entry models.AntrianReferensi) ([7]*ti
 }
 
 // saveTaskIDs saves the processed task IDs to database
+// Preserves tasks that are already 'Sudah' - does not reset them
 func (w *Watcher) saveTaskIDs(entry models.AntrianReferensi, tasks [7]*time.Time, generated [7]bool) error {
 	// Extract date part from TanggalPeriksa
 	tanggal := entry.TanggalPeriksa
@@ -574,11 +609,8 @@ func (w *Watcher) saveTaskIDs(entry models.AntrianReferensi, tasks [7]*time.Time
 		tanggal = tanggal[:10]
 	}
 
-	// Delete existing
-	_, err := w.db.DB.Exec("DELETE FROM mlite_antrian_referensi_taskid WHERE nomor_referensi = ?", entry.NomorReferensi)
-	if err != nil {
-		return err
-	}
+	// Get already completed tasks - don't touch these
+	completedTasks := w.getCompletedTaskIDs(entry.NomorReferensi)
 
 	keterangan := []string{
 		"Mulai tunggu admisi.",
@@ -590,21 +622,33 @@ func (w *Watcher) saveTaskIDs(entry models.AntrianReferensi, tasks [7]*time.Time
 		"Selesai pelayanan apotek.",
 	}
 
-	// Insert new
 	for i := 0; i < 7; i++ {
+		taskNum := i + 1
+
+		// Skip if already completed - don't reset
+		if completedTasks[taskNum] {
+			continue
+		}
+
 		if tasks[i] == nil {
 			continue
 		}
+
 		waktuMs := TimeToMillis(tasks[i])
 		ket := keterangan[i]
 		if generated[i] {
 			ket = ket + " [generated]"
 		}
+
+		// UPSERT - insert or update if exists
 		_, err := w.db.DB.Exec(`
 			INSERT INTO mlite_antrian_referensi_taskid 
 			(tanggal_periksa, nomor_referensi, taskid, waktu, status, keterangan)
 			VALUES (?, ?, ?, ?, 'Belum', ?)
-		`, tanggal, entry.NomorReferensi, i+1, waktuMs, ket)
+			ON DUPLICATE KEY UPDATE 
+				waktu = IF(status != 'Sudah', VALUES(waktu), waktu),
+				keterangan = IF(status != 'Sudah', VALUES(keterangan), keterangan)
+		`, tanggal, entry.NomorReferensi, taskNum, waktuMs, ket)
 		if err != nil {
 			return err
 		}
@@ -640,6 +684,26 @@ func (w *Watcher) getMaxSentTime(nomorReferensi string) int64 {
 		return maxWaktu.Int64
 	}
 	return 0
+}
+
+// getCompletedTaskIDs returns map of task IDs that are already 'Sudah'
+func (w *Watcher) getCompletedTaskIDs(nomorReferensi string) map[int]bool {
+	result := make(map[int]bool)
+	rows, err := w.db.DB.Query(`
+		SELECT taskid FROM mlite_antrian_referensi_taskid 
+		WHERE nomor_referensi = ? AND status = 'Sudah'
+	`, nomorReferensi)
+	if err != nil {
+		return result
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var taskID int
+		if rows.Scan(&taskID) == nil {
+			result[taskID] = true
+		}
+	}
+	return result
 }
 
 func maxInt64(a, b int64) int64 {

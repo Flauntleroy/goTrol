@@ -9,32 +9,104 @@
       "NoRawat": "2025/12/29/000007",
       "AutoOrderDone": true,
       "UpdateWaktuDone": false,
-      "ProcessedAt": "2025-12-29T15:33:16.7362178+08:00",
+      "ProcessedAt": "2025-12-29T23:52:30.846603+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:00:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:01:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 08:04:00",
           "BPJSStatus": "failed",
           "BPJSCode": 208,
           "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 08:05:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 08:50:40",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "2025-12-29 10:53:51",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=6 sudah ada"
+        },
+        "7": {
+          "Waktu": "2025-12-29 11:03:58",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=7 sudah ada"
         }
       },
       "Error": ""
     },
     {
       "NomorReferensi": "1702R0021225K001482",
-      "KodeBooking": "1702R00220251228071208MAT001MJKN",
+      "KodeBooking": "1702R00220251229000014MAT001",
       "NoRkmMedis": "080605",
       "NamaPasien": "RANTY FATRIANA PUTERI",
       "NoRawat": "2025/12/29/000014",
       "AutoOrderDone": true,
       "UpdateWaktuDone": false,
-      "ProcessedAt": "2025-12-29T15:33:17.3486541+08:00",
+      "ProcessedAt": "2025-12-29T23:52:40.7263829+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:00:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:01:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 08:03:00",
           "BPJSStatus": "failed",
           "BPJSCode": 208,
           "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 08:04:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 11:28:22",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "2025-12-29 11:29:31",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=6 sudah ada"
+        },
+        "7": {
+          "Waktu": "2025-12-29 13:39:32",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=7 sudah ada"
         }
       },
       "Error": ""
@@ -46,13 +118,49 @@
       "NamaPasien": "PURNAMAWATI",
       "NoRawat": "2025/12/29/000021",
       "AutoOrderDone": true,
-      "UpdateWaktuDone": true,
-      "ProcessedAt": "2025-12-29T15:31:23.4374282+08:00",
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T23:52:51.9065048+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:00:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:01:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 09:02:00",
-          "BPJSStatus": "success",
-          "BPJSCode": 200,
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 09:07:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 10:21:46",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
           "Message": ""
         }
       },
@@ -65,14 +173,50 @@
       "NamaPasien": "MAULIDA RAHMA",
       "NoRawat": "2025/12/29/000022",
       "AutoOrderDone": true,
-      "UpdateWaktuDone": true,
-      "ProcessedAt": "2025-12-29T15:31:25.1343442+08:00",
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T23:53:00.4704198+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:00:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:01:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 09:02:00",
-          "BPJSStatus": "success",
-          "BPJSCode": 200,
-          "Message": ""
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 09:03:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 09:04:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "2025-12-29 09:05:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=6 sudah ada"
+        },
+        "7": {
+          "Waktu": "2025-12-29 09:10:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=7 sudah ada"
         }
       },
       "Error": ""
@@ -84,14 +228,50 @@
       "NamaPasien": "ERNAWATI",
       "NoRawat": "2025/12/29/000023",
       "AutoOrderDone": true,
-      "UpdateWaktuDone": true,
-      "ProcessedAt": "2025-12-29T15:31:27.6083017+08:00",
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T23:53:10.974658+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:00:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:01:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 09:02:00",
-          "BPJSStatus": "success",
-          "BPJSCode": 200,
-          "Message": ""
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 09:07:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 11:42:17",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "2025-12-29 11:43:29",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=6 sudah ada"
+        },
+        "7": {
+          "Waktu": "2025-12-29 11:48:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=7 sudah ada"
         }
       },
       "Error": ""
@@ -104,51 +284,159 @@
       "NoRawat": "2025/12/29/000025",
       "AutoOrderDone": true,
       "UpdateWaktuDone": false,
-      "ProcessedAt": "2025-12-29T15:33:17.9473592+08:00",
+      "ProcessedAt": "2025-12-29T23:53:20.1791972+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:00:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:01:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 08:02:00",
           "BPJSStatus": "failed",
           "BPJSCode": 208,
           "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 08:03:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 09:08:24",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "2025-12-29 11:04:41",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=6 sudah ada"
+        },
+        "7": {
+          "Waktu": "2025-12-29 11:14:27",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=7 sudah ada"
         }
       },
       "Error": ""
     },
     {
       "NomorReferensi": "1702R0021225K001481",
-      "KodeBooking": "1702R00220251229072739MAT003MJKN",
+      "KodeBooking": "1702R00220251229000026MAT008",
       "NoRkmMedis": "096865",
       "NamaPasien": "MASNAH",
       "NoRawat": "2025/12/29/000026",
       "AutoOrderDone": true,
-      "UpdateWaktuDone": true,
-      "ProcessedAt": "2025-12-29T15:31:30.3036968+08:00",
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T23:53:30.13018+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:00:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:01:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 09:02:00",
-          "BPJSStatus": "success",
-          "BPJSCode": 200,
-          "Message": ""
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 09:06:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 11:44:01",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "2025-12-29 11:44:57",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=6 sudah ada"
+        },
+        "7": {
+          "Waktu": "2025-12-29 11:48:29",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=7 sudah ada"
         }
       },
       "Error": ""
     },
     {
       "NomorReferensi": "1702R0021125K001916",
-      "KodeBooking": "1702R00220251226025539OBG001MJKN",
+      "KodeBooking": "1702R00220251229000027OBG001",
       "NoRkmMedis": "111355",
       "NamaPasien": "NURMA YUFITA SARI",
       "NoRawat": "2025/12/29/000027",
       "AutoOrderDone": true,
       "UpdateWaktuDone": false,
-      "ProcessedAt": "2025-12-29T15:33:18.5139961+08:00",
+      "ProcessedAt": "2025-12-29T23:53:40.6758484+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:00:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:01:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 08:03:00",
           "BPJSStatus": "failed",
           "BPJSCode": 208,
           "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 08:05:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 09:12:12",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "2025-12-29 09:13:12",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=6 sudah ada"
+        },
+        "7": {
+          "Waktu": "2025-12-29 09:15:12",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=7 sudah ada"
         }
       },
       "Error": ""
@@ -160,14 +448,50 @@
       "NamaPasien": "MAHYUNI",
       "NoRawat": "2025/12/29/000028",
       "AutoOrderDone": true,
-      "UpdateWaktuDone": true,
-      "ProcessedAt": "2025-12-29T15:31:33.1849997+08:00",
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T23:53:50.0232616+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:00:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:01:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 09:02:00",
-          "BPJSStatus": "success",
-          "BPJSCode": 200,
-          "Message": ""
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 09:04:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 09:14:11",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "2025-12-29 11:09:36",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=6 sudah ada"
+        },
+        "7": {
+          "Waktu": "2025-12-29 11:20:58",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=7 sudah ada"
         }
       },
       "Error": ""
@@ -180,13 +504,49 @@
       "NoRawat": "2025/12/29/000030",
       "AutoOrderDone": true,
       "UpdateWaktuDone": false,
-      "ProcessedAt": "2025-12-29T15:33:19.1859897+08:00",
+      "ProcessedAt": "2025-12-29T23:53:59.5644227+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:00:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:01:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 08:02:00",
           "BPJSStatus": "failed",
           "BPJSCode": 208,
           "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 08:03:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 10:22:14",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
         }
       },
       "Error": ""
@@ -199,13 +559,49 @@
       "NoRawat": "2025/12/29/000031",
       "AutoOrderDone": true,
       "UpdateWaktuDone": false,
-      "ProcessedAt": "2025-12-29T15:33:19.7858026+08:00",
+      "ProcessedAt": "2025-12-29T23:54:08.6785913+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:00:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:01:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 09:02:00",
           "BPJSStatus": "failed",
           "BPJSCode": 208,
           "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 09:03:32",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 09:59:09",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "2025-12-29 10:00:09",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=6 sudah ada"
+        },
+        "7": {
+          "Waktu": "2025-12-29 10:02:09",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=7 sudah ada"
         }
       },
       "Error": ""
@@ -218,13 +614,49 @@
       "NoRawat": "2025/12/29/000032",
       "AutoOrderDone": true,
       "UpdateWaktuDone": false,
-      "ProcessedAt": "2025-12-29T15:33:20.4198519+08:00",
+      "ProcessedAt": "2025-12-29T23:54:17.4917195+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:00:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:01:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 08:05:00",
           "BPJSStatus": "failed",
           "BPJSCode": 208,
           "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 08:05:01",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 11:45:41",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "2025-12-29 11:46:20",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=6 sudah ada"
+        },
+        "7": {
+          "Waktu": "2025-12-29 11:49:07",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=7 sudah ada"
         }
       },
       "Error": ""
@@ -237,13 +669,49 @@
       "NoRawat": "2025/12/29/000033",
       "AutoOrderDone": true,
       "UpdateWaktuDone": false,
-      "ProcessedAt": "2025-12-29T15:33:21.0570493+08:00",
+      "ProcessedAt": "2025-12-29T23:54:26.3932494+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:00:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:01:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 08:03:00",
           "BPJSStatus": "failed",
           "BPJSCode": 208,
           "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 08:06:29",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 11:46:57",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "2025-12-29 11:48:27",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=6 sudah ada"
+        },
+        "7": {
+          "Waktu": "2025-12-29 11:52:14",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=7 sudah ada"
         }
       },
       "Error": ""
@@ -255,13 +723,49 @@
       "NamaPasien": "HATNIAH",
       "NoRawat": "2025/12/29/000035",
       "AutoOrderDone": true,
-      "UpdateWaktuDone": true,
-      "ProcessedAt": "2025-12-29T15:31:38.5589726+08:00",
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T23:54:38.6200965+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:00:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:01:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 09:03:16",
-          "BPJSStatus": "success",
-          "BPJSCode": 200,
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 09:07:16",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 09:22:42",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
           "Message": ""
         }
       },
@@ -275,13 +779,49 @@
       "NoRawat": "2025/12/29/000038",
       "AutoOrderDone": true,
       "UpdateWaktuDone": false,
-      "ProcessedAt": "2025-12-29T15:33:21.9506058+08:00",
+      "ProcessedAt": "2025-12-29T23:54:46.3897806+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:00:36",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:02:36",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 08:04:36",
           "BPJSStatus": "failed",
           "BPJSCode": 208,
           "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 08:14:36",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 11:52:13",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "2025-12-29 11:52:51",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=6 sudah ada"
+        },
+        "7": {
+          "Waktu": "2025-12-29 11:58:55",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=7 sudah ada"
         }
       },
       "Error": ""
@@ -293,14 +833,50 @@
       "NamaPasien": "USRA",
       "NoRawat": "2025/12/29/000040",
       "AutoOrderDone": true,
-      "UpdateWaktuDone": true,
-      "ProcessedAt": "2025-12-29T15:31:41.3564936+08:00",
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T23:55:15.8277052+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:05:48",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:06:48",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 09:09:48",
-          "BPJSStatus": "success",
-          "BPJSCode": 200,
-          "Message": ""
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 09:14:48",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 11:53:44",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "2025-12-29 15:18:55",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=6 sudah ada"
+        },
+        "7": {
+          "Waktu": "2025-12-29 15:23:41",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=7 sudah ada"
         }
       },
       "Error": ""
@@ -313,13 +889,37 @@
       "NoRawat": "2025/12/29/000039",
       "AutoOrderDone": true,
       "UpdateWaktuDone": false,
-      "ProcessedAt": "2025-12-29T15:33:22.6108722+08:00",
+      "ProcessedAt": "2025-12-29T20:19:49.8988265+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:04:56",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:05:56",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 08:07:56",
           "BPJSStatus": "failed",
           "BPJSCode": 208,
           "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 08:08:56",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 09:28:29",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
         }
       },
       "Error": ""
@@ -331,14 +931,50 @@
       "NamaPasien": "NOORHANA",
       "NoRawat": "2025/12/29/000012",
       "AutoOrderDone": true,
-      "UpdateWaktuDone": true,
-      "ProcessedAt": "2025-12-29T15:31:44.0098543+08:00",
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T23:55:05.0046663+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:05:45",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:07:45",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 09:10:45",
-          "BPJSStatus": "success",
-          "BPJSCode": 200,
-          "Message": ""
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 09:13:45",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 11:31:55",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "2025-12-29 11:32:24",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=6 sudah ada"
+        },
+        "7": {
+          "Waktu": "2025-12-29 11:37:57",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=7 sudah ada"
         }
       },
       "Error": ""
@@ -350,14 +986,50 @@
       "NamaPasien": "NURSIMAH",
       "NoRawat": "2025/12/29/000043",
       "AutoOrderDone": true,
-      "UpdateWaktuDone": true,
-      "ProcessedAt": "2025-12-29T15:31:46.006914+08:00",
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T23:55:25.6910704+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:07:58",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:08:58",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 09:09:58",
-          "BPJSStatus": "success",
-          "BPJSCode": 200,
-          "Message": ""
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 09:11:58",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 09:34:20",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "2025-12-29 09:35:20",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=6 sudah ada"
+        },
+        "7": {
+          "Waktu": "2025-12-29 09:36:20",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=7 sudah ada"
         }
       },
       "Error": ""
@@ -370,32 +1042,104 @@
       "NoRawat": "2025/12/29/000046",
       "AutoOrderDone": true,
       "UpdateWaktuDone": false,
-      "ProcessedAt": "2025-12-29T15:33:23.6430301+08:00",
+      "ProcessedAt": "2025-12-29T23:55:34.8337575+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:14:17",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:15:17",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 08:18:17",
           "BPJSStatus": "failed",
           "BPJSCode": 208,
           "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 08:22:17",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 11:56:58",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "2025-12-29 11:58:36",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=6 sudah ada"
+        },
+        "7": {
+          "Waktu": "2025-12-29 12:08:52",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=7 sudah ada"
         }
       },
       "Error": ""
     },
     {
       "NomorReferensi": "170205011225Y000573",
-      "KodeBooking": "1702R00220251229065502OBG002MJKN",
+      "KodeBooking": "1702R00220251229000049OBG002",
       "NoRkmMedis": "058153",
       "NamaPasien": "TRINA LISTIYANI",
       "NoRawat": "2025/12/29/000049",
       "AutoOrderDone": true,
       "UpdateWaktuDone": false,
-      "ProcessedAt": "2025-12-29T15:33:24.3258532+08:00",
+      "ProcessedAt": "2025-12-29T23:55:47.4872231+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:16:08",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:17:08",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 08:20:08",
           "BPJSStatus": "failed",
           "BPJSCode": 208,
           "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 08:22:08",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 10:17:15",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
         }
       },
       "Error": ""
@@ -408,13 +1152,49 @@
       "NoRawat": "2025/12/29/000051",
       "AutoOrderDone": true,
       "UpdateWaktuDone": false,
-      "ProcessedAt": "2025-12-29T15:33:25.0652538+08:00",
+      "ProcessedAt": "2025-12-29T23:55:58.0240281+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:19:33",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:21:33",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 08:22:33",
           "BPJSStatus": "failed",
           "BPJSCode": 208,
           "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 08:30:33",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 09:23:29",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "2025-12-29 11:14:31",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=6 sudah ada"
+        },
+        "7": {
+          "Waktu": "2025-12-29 12:02:14",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=7 sudah ada"
         }
       },
       "Error": ""
@@ -427,13 +1207,49 @@
       "NoRawat": "2025/12/29/000055",
       "AutoOrderDone": true,
       "UpdateWaktuDone": false,
-      "ProcessedAt": "2025-12-29T15:33:25.768436+08:00",
+      "ProcessedAt": "2025-12-29T23:56:10.3144912+08:00",
       "Tasks": {
+        "1": {
+          "Waktu": "2025-12-29 08:23:25",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=1 sudah ada"
+        },
+        "2": {
+          "Waktu": "2025-12-29 08:24:25",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=2 sudah ada"
+        },
         "3": {
           "Waktu": "2025-12-29 08:29:25",
           "BPJSStatus": "failed",
           "BPJSCode": 208,
           "Message": "TaskId=3 sudah ada"
+        },
+        "4": {
+          "Waktu": "2025-12-29 08:32:25",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=4 sudah ada"
+        },
+        "5": {
+          "Waktu": "2025-12-29 12:02:59",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=5 sudah ada"
+        },
+        "6": {
+          "Waktu": "2025-12-29 12:04:24",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=6 sudah ada"
+        },
+        "7": {
+          "Waktu": "2025-12-29 12:12:40",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=7 sudah ada"
         }
       },
       "Error": ""

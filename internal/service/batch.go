@@ -2,8 +2,8 @@ package service
 
 import (
 	"database/sql"
-	"math/rand"
 	"log"
+	"math/rand"
 	"strings"
 	"time"
 
@@ -142,7 +142,7 @@ func (b *BatchHandler) BatchUpdateWaktu(date string) (int, int, error) {
 
 	log.Printf("📋 Found %d entries with Task IDs", len(entries))
 
-		successCount := 0
+	successCount := 0
 	for _, entry := range entries {
 		log.Printf("   Sending: %s - %s", entry.NoRkmMedis, entry.NamaPasien)
 
@@ -498,10 +498,8 @@ func (b *BatchHandler) saveTaskIDs(entry models.AntrianReferensi, tasks [7]*time
 		tanggal = tanggal[:10]
 	}
 
-	_, err := b.db.DB.Exec("DELETE FROM mlite_antrian_referensi_taskid WHERE nomor_referensi = ?", entry.NomorReferensi)
-	if err != nil {
-		return err
-	}
+	// Get already completed tasks - don't touch these
+	completedTasks := b.getCompletedTaskIDs(entry.NomorReferensi)
 
 	keterangan := []string{
 		"Mulai tunggu admisi.",
@@ -514,19 +512,32 @@ func (b *BatchHandler) saveTaskIDs(entry models.AntrianReferensi, tasks [7]*time
 	}
 
 	for i := 0; i < 7; i++ {
+		taskNum := i + 1
+
+		// Skip if already completed - don't reset
+		if completedTasks[taskNum] {
+			continue
+		}
+
 		if tasks[i] == nil {
 			continue
 		}
+
 		waktuMs := TimeToMillis(tasks[i])
 		ket := keterangan[i]
 		if generated[i] {
 			ket = ket + " [generated]"
 		}
+
+		// UPSERT - insert or update if exists
 		_, err := b.db.DB.Exec(`
 			INSERT INTO mlite_antrian_referensi_taskid 
 			(tanggal_periksa, nomor_referensi, taskid, waktu, status, keterangan)
 			VALUES (?, ?, ?, ?, 'Belum', ?)
-		`, tanggal, entry.NomorReferensi, i+1, waktuMs, ket)
+			ON DUPLICATE KEY UPDATE 
+				waktu = IF(status != 'Sudah', VALUES(waktu), waktu),
+				keterangan = IF(status != 'Sudah', VALUES(keterangan), keterangan)
+		`, tanggal, entry.NomorReferensi, taskNum, waktuMs, ket)
 		if err != nil {
 			return err
 		}
@@ -556,6 +567,26 @@ func (b *BatchHandler) getMaxSentTime(nomorReferensi string) int64 {
 		return maxWaktu.Int64
 	}
 	return 0
+}
+
+// getCompletedTaskIDs returns map of task IDs that are already 'Sudah'
+func (b *BatchHandler) getCompletedTaskIDs(nomorReferensi string) map[int]bool {
+	result := make(map[int]bool)
+	rows, err := b.db.DB.Query(`
+		SELECT taskid FROM mlite_antrian_referensi_taskid 
+		WHERE nomor_referensi = ? AND status = 'Sudah'
+	`, nomorReferensi)
+	if err != nil {
+		return result
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var taskID int
+		if rows.Scan(&taskID) == nil {
+			result[taskID] = true
+		}
+	}
+	return result
 }
 
 func (b *BatchHandler) fetchEntryByNomorReferensi(nr string) (*models.AntrianReferensi, error) {
