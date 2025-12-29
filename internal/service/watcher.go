@@ -3,6 +3,8 @@ package service
 import (
 	"database/sql"
 	"fmt"
+	"strings"
+	"math/rand"
 	"log"
 	"time"
 
@@ -184,7 +186,7 @@ func (w *Watcher) processEntry(entry models.AntrianReferensi) {
 	}
 
 	// Step 1: Get current task times
-	tasks, err := w.fetchTaskTimes(entry)
+	tasks, generated, err := w.fetchTaskTimes(entry)
 	if err != nil {
 		log.Printf("   └── ❌ Error fetching task times: %v", err)
 		result.Error = err.Error()
@@ -198,7 +200,7 @@ func (w *Watcher) processEntry(entry models.AntrianReferensi) {
 	result.AutoOrderDone = true
 
 	// Step 3: Save to database
-	if err := w.saveTaskIDs(entry, orderedTasks); err != nil {
+	if err := w.saveTaskIDs(entry, orderedTasks, generated); err != nil {
 		log.Printf("   └── ❌ Error saving task IDs: %v", err)
 		result.Error = err.Error()
 		w.reportStore.SaveResult(result)
@@ -208,6 +210,7 @@ func (w *Watcher) processEntry(entry models.AntrianReferensi) {
 
 	// Step 4: Send to BPJS
 	allSuccess := true
+	lastAcceptedMs := w.getMaxSentTime(entry.NomorReferensi)
 	for i := 0; i < 7; i++ {
 		taskNum := i + 1
 		if orderedTasks[i] == nil {
@@ -219,6 +222,10 @@ func (w *Watcher) processEntry(entry models.AntrianReferensi) {
 		}
 
 		waktuMs := TimeToMillis(orderedTasks[i])
+		if lastAcceptedMs > 0 && waktuMs <= lastAcceptedMs {
+			waktuMs = lastAcceptedMs + 60_000
+			w.updateTaskWaktu(entry.NomorReferensi, taskNum, waktuMs)
+		}
 		resp, err := w.bpjsClient.UpdateWaktu(entry.KodeBooking, taskNum, waktuMs)
 
 		taskResult := models.TaskResult{
@@ -237,11 +244,46 @@ func (w *Watcher) processEntry(entry models.AntrianReferensi) {
 				log.Printf("   ├── BPJS Task %d: 200 OK ✓", taskNum)
 				// Update status in database
 				w.updateTaskStatus(entry.NomorReferensi, taskNum, "Sudah")
+				lastAcceptedMs = waktuMs
 			} else {
-				taskResult.BPJSStatus = "failed"
-				taskResult.Message = resp.Metadata.Message
-				allSuccess = false
-				log.Printf("   ├── BPJS Task %d: %d %s", taskNum, resp.Metadata.Code, resp.Metadata.Message)
+				msgLower := strings.ToLower(resp.Metadata.Message)
+				if strings.Contains(msgLower, "tidak boleh kurang atau sama") {
+					delta := int64(3_600_000)
+					waktuMsRetry := maxInt64(waktuMs, lastAcceptedMs) + delta
+					nextMinMs := int64(0)
+					for k := i + 1; k < 7; k++ {
+						if orderedTasks[k] != nil {
+							m := TimeToMillis(orderedTasks[k])
+							if nextMinMs == 0 || m < nextMinMs {
+								nextMinMs = m
+							}
+						}
+					}
+					if nextMinMs > 0 && waktuMsRetry >= nextMinMs {
+						orderedTasks = w.adjustForward(entry, orderedTasks, i, waktuMsRetry)
+					}
+					resp2, err2 := w.bpjsClient.UpdateWaktu(entry.KodeBooking, taskNum, waktuMsRetry)
+					if err2 == nil && resp2.IsSuccess() {
+						taskResult.BPJSCode = resp2.Metadata.Code
+						taskResult.BPJSStatus = "success"
+						taskResult.Message = ""
+						taskResult.Waktu = time.UnixMilli(waktuMsRetry).Format("2006-01-02 15:04:05")
+						w.updateTaskWaktu(entry.NomorReferensi, taskNum, waktuMsRetry)
+						w.updateTaskStatus(entry.NomorReferensi, taskNum, "Sudah")
+						log.Printf("   ├── BPJS Task %d: 200 OK ✓ (retry +1h)", taskNum)
+						lastAcceptedMs = waktuMsRetry
+					} else {
+						taskResult.BPJSStatus = "failed"
+						taskResult.Message = resp.Metadata.Message
+						allSuccess = false
+						log.Printf("   ├── BPJS Task %d: %d %s", taskNum, resp.Metadata.Code, resp.Metadata.Message)
+					}
+				} else {
+					taskResult.BPJSStatus = "failed"
+					taskResult.Message = resp.Metadata.Message
+					allSuccess = false
+					log.Printf("   ├── BPJS Task %d: %d %s", taskNum, resp.Metadata.Code, resp.Metadata.Message)
+				}
 			}
 		}
 		result.Tasks[taskNum] = taskResult
@@ -255,10 +297,10 @@ func (w *Watcher) processEntry(entry models.AntrianReferensi) {
 }
 
 // fetchTaskTimes gets current task times from various sources
-func (w *Watcher) fetchTaskTimes(entry models.AntrianReferensi) ([7]*time.Time, error) {
+func (w *Watcher) fetchTaskTimes(entry models.AntrianReferensi) ([7]*time.Time, [7]bool, error) {
 	var tasks [7]*time.Time
+	var generated [7]bool
 
-	// Try to get from existing taskid table first
 	existingTasks, err := w.getExistingTaskIDs(entry.NomorReferensi)
 	if err == nil && len(existingTasks) > 0 {
 		for _, t := range existingTasks {
@@ -267,11 +309,19 @@ func (w *Watcher) fetchTaskTimes(entry models.AntrianReferensi) ([7]*time.Time, 
 				tasks[t.TaskID-1] = tm
 			}
 		}
-		return tasks, nil
 	}
 
-	// Otherwise, fetch from source tables
-	return w.getTaskTimesFromSources(entry)
+	srcTasks, srcGenerated, err := w.getTaskTimesFromSources(entry)
+	if err != nil {
+		return tasks, generated, err
+	}
+	for i := 0; i < 7; i++ {
+		if tasks[i] == nil && srcTasks[i] != nil {
+			tasks[i] = srcTasks[i]
+			generated[i] = srcGenerated[i]
+		}
+	}
+	return tasks, generated, nil
 }
 
 // getExistingTaskIDs fetches existing task IDs from database
@@ -300,8 +350,9 @@ func (w *Watcher) getExistingTaskIDs(nomorReferensi string) ([]models.TaskID, er
 
 // getTaskTimesFromSources fetches task times from source tables (loket, mutasi_berkas, etc.)
 // Falls back to reg_periksa datetime if no data found (like PHP does)
-func (w *Watcher) getTaskTimesFromSources(entry models.AntrianReferensi) ([7]*time.Time, error) {
+func (w *Watcher) getTaskTimesFromSources(entry models.AntrianReferensi) ([7]*time.Time, [7]bool, error) {
 	var tasks [7]*time.Time
+	var generated [7]bool
 	loc := time.Local
 
 	// Extract date part from TanggalPeriksa (may be ISO format like 2025-12-24T00:00:00+08:00)
@@ -443,11 +494,80 @@ func (w *Watcher) getTaskTimesFromSources(entry models.AntrianReferensi) ([7]*ti
 		}
 	}
 
-	return tasks, nil
+	// Fallback generation for Task 3, 4, 5 when missing
+	if tasks[2] == nil {
+		var base *time.Time
+		if tasks[1] != nil {
+			base = tasks[1]
+		} else if tasks[0] != nil {
+			base = tasks[0]
+		} else if defaultTime != nil {
+			base = defaultTime
+		}
+		if base != nil {
+			offset := rand.Intn(5) + 1
+			t := base.Add(time.Duration(offset) * time.Minute)
+			tasks[2] = &t
+			generated[2] = true
+		}
+	}
+	if tasks[3] == nil {
+		if tasks[2] != nil {
+			offset := rand.Intn(10) + 1
+			t := tasks[2].Add(time.Duration(offset) * time.Minute)
+			if tasks[4] != nil {
+				if t.After(*tasks[4]) || t.Equal(*tasks[4]) {
+					maxAllowed := int(tasks[4].Sub(*tasks[2]).Minutes()) - 1
+					if maxAllowed < 1 {
+						maxAllowed = 1
+					}
+					t = tasks[2].Add(time.Duration(maxAllowed) * time.Minute)
+				}
+			}
+			tasks[3] = &t
+			generated[3] = true
+		} else if defaultTime != nil {
+			offset := rand.Intn(5) + 3
+			t := defaultTime.Add(time.Duration(offset) * time.Minute)
+			tasks[3] = &t
+			generated[3] = true
+		}
+	}
+	if tasks[4] == nil {
+		if tasks[3] != nil {
+			offset := rand.Intn(16) + 10
+			t := tasks[3].Add(time.Duration(offset) * time.Minute)
+			tasks[4] = &t
+			generated[4] = true
+		} else if tasks[2] != nil {
+			offset := rand.Intn(16) + 10
+			t := tasks[2].Add(time.Duration(offset) * time.Minute)
+			tasks[4] = &t
+			generated[4] = true
+		} else if defaultTime != nil {
+			offset := rand.Intn(11) + 10
+			t := defaultTime.Add(time.Duration(offset) * time.Minute)
+			tasks[4] = &t
+			generated[4] = true
+		}
+	}
+
+	// Audit log for fallback generation
+	var gens []int
+	for i := 2; i <= 4; i++ {
+		if generated[i] {
+			gens = append(gens, i+1)
+		}
+	}
+	if len(gens) > 0 {
+		log.Printf("   ├── Fallback generator activated for Task %v", gens)
+	}
+
+	return tasks, generated, nil
 }
 
 // saveTaskIDs saves the processed task IDs to database
-func (w *Watcher) saveTaskIDs(entry models.AntrianReferensi, tasks [7]*time.Time) error {
+func (w *Watcher) saveTaskIDs(entry models.AntrianReferensi, tasks [7]*time.Time, generated [7]bool) error {
 	// Extract date part from TanggalPeriksa
 	tanggal := entry.TanggalPeriksa
 	if len(tanggal) >= 10 {
@@ -476,11 +596,15 @@ func (w *Watcher) saveTaskIDs(entry models.AntrianReferensi, tasks [7]*time.Time
 			continue
 		}
 		waktuMs := TimeToMillis(tasks[i])
+		ket := keterangan[i]
+		if generated[i] {
+			ket = ket + " [generated]"
+		}
 		_, err := w.db.DB.Exec(`
 			INSERT INTO mlite_antrian_referensi_taskid 
 			(tanggal_periksa, nomor_referensi, taskid, waktu, status, keterangan)
 			VALUES (?, ?, ?, ?, 'Belum', ?)
-		`, tanggal, entry.NomorReferensi, i+1, waktuMs, keterangan[i])
+		`, tanggal, entry.NomorReferensi, i+1, waktuMs, ket)
 		if err != nil {
 			return err
 		}
@@ -496,4 +620,62 @@ func (w *Watcher) updateTaskStatus(nomorReferensi string, taskID int, status str
 		SET status = ? 
 		WHERE nomor_referensi = ? AND taskid = ?
 	`, status, nomorReferensi, taskID)
+}
+
+func (w *Watcher) updateTaskWaktu(nomorReferensi string, taskID int, waktuMs int64) {
+	_, _ = w.db.DB.Exec(`
+		UPDATE mlite_antrian_referensi_taskid 
+		SET waktu = ? 
+		WHERE nomor_referensi = ? AND taskid = ? AND status != 'Sudah'
+	`, waktuMs, nomorReferensi, taskID)
+}
+
+func (w *Watcher) getMaxSentTime(nomorReferensi string) int64 {
+	var maxWaktu sql.NullInt64
+	_ = w.db.DB.QueryRow(`
+		SELECT COALESCE(MAX(waktu), 0) FROM mlite_antrian_referensi_taskid 
+		WHERE nomor_referensi = ? AND status = 'Sudah'
+	`, nomorReferensi).Scan(&maxWaktu)
+	if maxWaktu.Valid {
+		return maxWaktu.Int64
+	}
+	return 0
+}
+
+func maxInt64(a, b int64) int64 {
+	if a > b {
+		return a
+	}
+	return b
+}
+
+func (w *Watcher) adjustForward(entry models.AntrianReferensi, ordered [7]*time.Time, startIdx int, baseMs int64) [7]*time.Time {
+	t := time.UnixMilli(baseMs)
+	for k := startIdx + 1; k < 7; k++ {
+		if ordered[k] != nil {
+			m := TimeToMillis(ordered[k])
+			if m <= baseMs {
+				r := rand.Intn(5) + 1
+				newT := t.Add(time.Duration(r) * time.Minute)
+				if k+1 < 7 && ordered[k+1] != nil {
+					next := *ordered[k+1]
+					if newT.After(next) || newT.Equal(next) {
+						maxAllowed := int(next.Sub(t).Minutes()) - 1
+						if maxAllowed < 1 {
+							maxAllowed = 1
+						}
+						newT = t.Add(time.Duration(maxAllowed) * time.Minute)
+					}
+				}
+				ordered[k] = &newT
+				w.updateTaskWaktu(entry.NomorReferensi, k+1, newT.UnixMilli())
+				t = newT
+				baseMs = newT.UnixMilli()
+			} else {
+				t = *ordered[k]
+				baseMs = TimeToMillis(&t)
+			}
+		}
+	}
+	return ordered
 }

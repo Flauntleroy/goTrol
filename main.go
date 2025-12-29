@@ -63,6 +63,8 @@ Batch Types:
   batch updatewaktu --date YYYY-MM-DD
   batch all --today            Both Auto Order + Update Waktu
   batch all --date YYYY-MM-DD
+  batch retrytask3 --today     Retry kirim Task 3 yang gagal
+  batch retrytask3 --date YYYY-MM-DD
 
 Examples:
   gotrol run
@@ -198,9 +200,15 @@ func runBatch() {
 		}
 		fmt.Printf("\nResult: %d/%d completed successfully\n", success, total)
 
+	case "retrytask3":
+		total, success, err := batch.BatchRetryTask3(date)
+		if err != nil {
+			log.Fatalf("Batch error: %v", err)
+		}
+		fmt.Printf("\nResult: %d/%d Task 3 resent successfully\n", success, total)
 	default:
 		fmt.Printf("Unknown batch type: %s\n", batchType)
-		fmt.Println("Types: autoorder, updatewaktu, all")
+		fmt.Println("Types: autoorder, updatewaktu, all, retrytask3")
 	}
 }
 

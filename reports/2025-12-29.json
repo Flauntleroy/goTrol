@@ -1,0 +1,1316 @@
+{
+  "date": "2025-12-29",
+  "results": [
+    {
+      "NomorReferensi": "1702R0021125K001982",
+      "KodeBooking": "1702R00220251229000007PAR001",
+      "NoRkmMedis": "079903",
+      "NamaPasien": "HAMDANI",
+      "NoRawat": "2025/12/29/000007",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:16.7362178+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:04:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001482",
+      "KodeBooking": "1702R00220251228071208MAT001MJKN",
+      "NoRkmMedis": "080605",
+      "NamaPasien": "RANTY FATRIANA PUTERI",
+      "NoRawat": "2025/12/29/000014",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:17.3486541+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:03:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225V002527",
+      "KodeBooking": "1702R00220251229000021IRM007",
+      "NoRkmMedis": "018295",
+      "NamaPasien": "PURNAMAWATI",
+      "NoRawat": "2025/12/29/000021",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:31:23.4374282+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:02:00",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001951",
+      "KodeBooking": "1702R00220251229000022MAT006",
+      "NoRkmMedis": "111958",
+      "NamaPasien": "MAULIDA RAHMA",
+      "NoRawat": "2025/12/29/000022",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:31:25.1343442+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:02:00",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001953",
+      "KodeBooking": "1702R00220251229000023MAT007",
+      "NoRkmMedis": "069853",
+      "NamaPasien": "ERNAWATI",
+      "NoRawat": "2025/12/29/000023",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:31:27.6083017+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:02:00",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021125K001986",
+      "KodeBooking": "1702R00220251229000025PAR003",
+      "NoRkmMedis": "099375",
+      "NamaPasien": "SUGIANNOR",
+      "NoRawat": "2025/12/29/000025",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:17.9473592+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:02:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001481",
+      "KodeBooking": "1702R00220251229072739MAT003MJKN",
+      "NoRkmMedis": "096865",
+      "NamaPasien": "MASNAH",
+      "NoRawat": "2025/12/29/000026",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:31:30.3036968+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:02:00",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021125K001916",
+      "KodeBooking": "1702R00220251226025539OBG001MJKN",
+      "NoRkmMedis": "111355",
+      "NamaPasien": "NURMA YUFITA SARI",
+      "NoRawat": "2025/12/29/000027",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:18.5139961+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:03:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021125K002186",
+      "KodeBooking": "1702R00220251229000028PAR004",
+      "NoRkmMedis": "107276",
+      "NamaPasien": "MAHYUNI",
+      "NoRawat": "2025/12/29/000028",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:31:33.1849997+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:02:00",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002213",
+      "KodeBooking": "1702R00220251229000030IRM008",
+      "NoRkmMedis": "011357",
+      "NamaPasien": "IRA MAHKAMAH, ST",
+      "NoRawat": "2025/12/29/000030",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:19.1859897+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:02:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001458",
+      "KodeBooking": "1702R00220251229000031ANA001",
+      "NoRkmMedis": "108047",
+      "NamaPasien": "OLYFIA SYAFIRA PUTRI",
+      "NoRawat": "2025/12/29/000031",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:19.7858026+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:02:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001476",
+      "KodeBooking": "1702R00220251229000032MAT009",
+      "NoRkmMedis": "087814",
+      "NamaPasien": "NORJANAH",
+      "NoRawat": "2025/12/29/000032",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:20.4198519+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:05:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001954",
+      "KodeBooking": "1702R00220251229000033MAT010",
+      "NoRkmMedis": "111952",
+      "NamaPasien": "SITI BADRIYAH",
+      "NoRawat": "2025/12/29/000033",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:21.0570493+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:03:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002182",
+      "KodeBooking": "1702R00220251229000035OBG004",
+      "NoRkmMedis": "024992",
+      "NamaPasien": "HATNIAH",
+      "NoRawat": "2025/12/29/000035",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:31:38.5589726+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:03:16",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001948",
+      "KodeBooking": "1702R00220251229000038MAT012",
+      "NoRkmMedis": "111970",
+      "NamaPasien": "AHMAD HAILI",
+      "NoRawat": "2025/12/29/000038",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:21.9506058+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:04:36",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "0284U0041225P000115",
+      "KodeBooking": "1702R00220251229000040MAT013",
+      "NoRkmMedis": "112097",
+      "NamaPasien": "USRA",
+      "NoRawat": "2025/12/29/000040",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:31:41.3564936+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:09:48",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K000673",
+      "KodeBooking": "1702R00220251227063827OBG002MJKN",
+      "NoRkmMedis": "107657",
+      "NamaPasien": "RINA JUNIARSIH",
+      "NoRawat": "2025/12/29/000039",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:22.6108722+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:07:56",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021125K001267",
+      "KodeBooking": "1702R00220251229000012MAT002",
+      "NoRkmMedis": "060531",
+      "NamaPasien": "NOORHANA",
+      "NoRawat": "2025/12/29/000012",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:31:44.0098543+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:10:45",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002184",
+      "KodeBooking": "1702R00220251229000043OBG007",
+      "NoRkmMedis": "111281",
+      "NamaPasien": "NURSIMAH",
+      "NoRawat": "2025/12/29/000043",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:31:46.006914+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:09:58",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001473",
+      "KodeBooking": "1702R00220251229000046MAT014",
+      "NoRkmMedis": "029487",
+      "NamaPasien": "RABIATUL ADAWIYAH",
+      "NoRawat": "2025/12/29/000046",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:23.6430301+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:18:17",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170205011225Y000573",
+      "KodeBooking": "1702R00220251229065502OBG002MJKN",
+      "NoRkmMedis": "058153",
+      "NamaPasien": "TRINA LISTIYANI",
+      "NoRawat": "2025/12/29/000049",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:24.3258532+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:20:08",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170203011225Y001019",
+      "KodeBooking": "1702R00220251229000051PAR005",
+      "NoRkmMedis": "093970",
+      "NamaPasien": "SUNARNO",
+      "NoRawat": "2025/12/29/000051",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:25.0652538+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:22:33",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170205011225Y000652",
+      "KodeBooking": "1702R00220251229000055MAT016",
+      "NoRkmMedis": "074953",
+      "NamaPasien": "MISINAM",
+      "NoRawat": "2025/12/29/000055",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:25.768436+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:29:25",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001484",
+      "KodeBooking": "1702R00220251229000056MAT017",
+      "NoRkmMedis": "093163",
+      "NamaPasien": "ROY SURYANTO",
+      "NoRawat": "2025/12/29/000056",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:26.5022855+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:29:38",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002220",
+      "KodeBooking": "1702R00220251229000057PAR007",
+      "NoRkmMedis": "080175",
+      "NamaPasien": "SiTi BULKIS",
+      "NoRawat": "2025/12/29/000057",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:27.3576377+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:29:14",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021125K002004",
+      "KodeBooking": "1702R00220251229000061OBG009",
+      "NoRkmMedis": "054612",
+      "NamaPasien": "RAUDAH",
+      "NoRawat": "2025/12/29/000061",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:31:54.6443733+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:30:13",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021125K001258",
+      "KodeBooking": "1702R00220251229000065MAT018",
+      "NoRkmMedis": "029638",
+      "NamaPasien": "NOR BAITY",
+      "NoRawat": "2025/12/29/000065",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:28.0326627+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:39:43",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001479",
+      "KodeBooking": "1702R00220251229000067MAT020",
+      "NoRkmMedis": "090127",
+      "NamaPasien": "AGUS FIRDAUS",
+      "NoRawat": "2025/12/29/000067",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:28.6774344+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:38:15",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021125K001984",
+      "KodeBooking": "1702R00220251229000068PAR009",
+      "NoRkmMedis": "108147",
+      "NamaPasien": "NURJANAH",
+      "NoRawat": "2025/12/29/000068",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:29.6032593+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:38:46",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001470",
+      "KodeBooking": "1702R00220251229000069MAT021",
+      "NoRkmMedis": "072613",
+      "NamaPasien": "SITI FATIMAH",
+      "NoRawat": "2025/12/29/000069",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:30.5447216+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:40:23",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002204",
+      "KodeBooking": "1702R00220251229000072PAR010",
+      "NoRkmMedis": "111883",
+      "NamaPasien": "RUHANA",
+      "NoRawat": "2025/12/29/000072",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:31.4207649+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:40:55",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170605011225Y000704",
+      "KodeBooking": "1702R00220251229000074MAT022",
+      "NoRkmMedis": "022443",
+      "NamaPasien": "MUKRI",
+      "NoRawat": "2025/12/29/000074",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:32:01.4697071+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:39:39",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K000119",
+      "KodeBooking": "1702R00220251229000078OBG010",
+      "NoRkmMedis": "107339",
+      "NamaPasien": "SANIAH",
+      "NoRawat": "2025/12/29/000078",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:32.2029245+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:43:57",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K000929",
+      "KodeBooking": "1702R00220251229000080MAT023",
+      "NoRkmMedis": "106860",
+      "NamaPasien": "MASTINA",
+      "NoRawat": "2025/12/29/000080",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:32:03.5980041+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:43:38",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170203021225Y000371",
+      "KodeBooking": "1702R00220251229000083MAT024",
+      "NoRkmMedis": "025822",
+      "NamaPasien": "ARDIANSYAH",
+      "NoRawat": "2025/12/29/000083",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:32.8656399+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:48:05",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002194",
+      "KodeBooking": "1702R00220251229000084MAT025",
+      "NoRkmMedis": "050410",
+      "NamaPasien": "MASNIATI",
+      "NoRawat": "2025/12/29/000084",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:33.9188693+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:48:31",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170203011225Y000900",
+      "KodeBooking": "1702R00220251229000088PAR011",
+      "NoRkmMedis": "003714",
+      "NamaPasien": "SUPIANSYAH",
+      "NoRawat": "2025/12/29/000088",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:34.7330671+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:50:05",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002228",
+      "KodeBooking": "1702R00220251229000095PAR012",
+      "NoRkmMedis": "022369",
+      "NamaPasien": "NORHAYATI",
+      "NoRawat": "2025/12/29/000095",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:35.7657077+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:04:51",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225V002362",
+      "KodeBooking": "1702R00220251229000097IRM018",
+      "NoRkmMedis": "013767",
+      "NamaPasien": "JUMADI",
+      "NoRawat": "2025/12/29/000097",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:36.6735664+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 08:55:08",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225V001664",
+      "KodeBooking": "1702R00220251229000100IRM019",
+      "NoRkmMedis": "007034",
+      "NamaPasien": "M. ILMI",
+      "NoRawat": "2025/12/29/000100",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:37.4643631+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:00:56",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225V002556",
+      "KodeBooking": "1702R00220251229000102PAR014",
+      "NoRkmMedis": "111588",
+      "NamaPasien": "SURIP",
+      "NoRawat": "2025/12/29/000102",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:38.2441488+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:03:33",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K000571",
+      "KodeBooking": "1702R00220251228073547OBG003MJKN",
+      "NoRkmMedis": "108447",
+      "NamaPasien": "TRI UTARI",
+      "NoRawat": "2025/12/29/000110",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:38.9562129+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:07:39",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225V002459",
+      "KodeBooking": "1702R00220251229000111IRM022",
+      "NoRkmMedis": "079681",
+      "NamaPasien": "ENI SILFIANDARI",
+      "NoRawat": "2025/12/29/000111",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:39.7500999+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:05:54",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170204011225Y000645",
+      "KodeBooking": "1702R00220251229000112OBG013",
+      "NoRkmMedis": "112101",
+      "NamaPasien": "NURUL HUDA",
+      "NoRawat": "2025/12/29/000112",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:32:11.8540192+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:08:31",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021125K002065",
+      "KodeBooking": "1702R00220251229000115PAR014",
+      "NoRkmMedis": "094226",
+      "NamaPasien": "MISJAH",
+      "NoRawat": "2025/12/29/000115",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:40.784644+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:13:07",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170203021225Y000481",
+      "KodeBooking": "1702R00220251229000118PAR015",
+      "NoRkmMedis": "093062",
+      "NamaPasien": "Bayah",
+      "NoRawat": "2025/12/29/000118",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:42.0944208+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:16:13",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021125K002203",
+      "KodeBooking": "1702R00220251229000120OBG014",
+      "NoRkmMedis": "058208",
+      "NamaPasien": "NURLINA",
+      "NoRawat": "2025/12/29/000120",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:43.2359821+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:15:37",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001596",
+      "KodeBooking": "1702R00220251229000123PAR016",
+      "NoRkmMedis": "111741",
+      "NamaPasien": "SALAMAT",
+      "NoRawat": "2025/12/29/000123",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:44.3458647+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 12:17:45",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002207",
+      "KodeBooking": "1702R00220251229000125IRM027",
+      "NoRkmMedis": "111259",
+      "NamaPasien": "PONIRAH",
+      "NoRawat": "2025/12/29/000125",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:32:17.4580585+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:17:57",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002208",
+      "KodeBooking": "1702R00220251229000127MAT027",
+      "NoRkmMedis": "111778",
+      "NamaPasien": "SAMSU",
+      "NoRawat": "2025/12/29/000127",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:32:19.1680966+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:16:19",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002203",
+      "KodeBooking": "1702R00220251229000128MAT028",
+      "NoRkmMedis": "109977",
+      "NamaPasien": "BASRI",
+      "NoRawat": "2025/12/29/000128",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:45.7984072+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:19:24",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225V002283",
+      "KodeBooking": "1702R00220251229000129IRM028",
+      "NoRkmMedis": "110751",
+      "NamaPasien": "MARIDA",
+      "NoRawat": "2025/12/29/000129",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:32:21.685938+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:18:54",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170203011225Y001056",
+      "KodeBooking": "1702R00220251229000132PAR017",
+      "NoRkmMedis": "002262",
+      "NamaPasien": "SYAMSUDDIN GINTING",
+      "NoRawat": "2025/12/29/000132",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:46.8601177+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:38:44",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170204011225Y000562",
+      "KodeBooking": "1702R00220251229000135MAT029",
+      "NoRkmMedis": "096711",
+      "NamaPasien": "SUMINI",
+      "NoRawat": "2025/12/29/000135",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:32:23.7014248+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:24:43",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170203021225Y000473",
+      "KodeBooking": "1702R00220251229000138PAR018",
+      "NoRkmMedis": "044553",
+      "NamaPasien": "MURSIAH",
+      "NoRawat": "2025/12/29/000138",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:47.8994919+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:38:36",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170203021225Y000513",
+      "KodeBooking": "1702R00220251229000148OBG017",
+      "NoRkmMedis": "078651",
+      "NamaPasien": "HERONISA",
+      "NoRawat": "2025/12/29/000148",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:48.8618401+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:38:34",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225V002444",
+      "KodeBooking": "1702R00220251229000153IRM031",
+      "NoRkmMedis": "058985",
+      "NamaPasien": "SUPENI",
+      "NoRawat": "2025/12/29/000153",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:32:26.9419085+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:40:29",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001468",
+      "KodeBooking": "1702R00220251229000159MAT031",
+      "NoRkmMedis": "035753",
+      "NamaPasien": "H. KHAIRANI",
+      "NoRawat": "2025/12/29/000159",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:49.9624751+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:46:02",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225V002414",
+      "KodeBooking": "1702R00220251229000161IRM032",
+      "NoRkmMedis": "098095",
+      "NamaPasien": "ARNI",
+      "NoRawat": "2025/12/29/000161",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:50.9479097+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 09:51:26",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170207011225Y000739",
+      "KodeBooking": "1702R00220251229000164MAT032",
+      "NoRkmMedis": "112108",
+      "NamaPasien": "JAMA`AH",
+      "NoRawat": "2025/12/29/000164",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:32:30.1256255+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:55:43",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170205011225Y000755",
+      "KodeBooking": "1702R00220251229000166MAT033",
+      "NoRkmMedis": "112109",
+      "NamaPasien": "SUMARGONO",
+      "NoRawat": "2025/12/29/000166",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:32:31.6510849+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:58:18",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170203011225Y001076",
+      "KodeBooking": "1702R00220251229000168OBG021",
+      "NoRkmMedis": "110567",
+      "NamaPasien": "KAMELIYA AGASTI DEWI",
+      "NoRawat": "2025/12/29/000168",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:51.9666938+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:04:20",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "0284U0101225P000138",
+      "KodeBooking": "1702R00220251229000172ANA002",
+      "NoRkmMedis": "105612",
+      "NamaPasien": "YOHANIS OKTAVIAN PETRUS SETU",
+      "NoRawat": "2025/12/29/000172",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:32:34.4257836+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 11:07:39",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001471",
+      "KodeBooking": "1702R00220251229000175MAT034",
+      "NoRkmMedis": "076986",
+      "NamaPasien": "RAMIAH",
+      "NoRawat": "2025/12/29/000175",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:53.4004312+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:21:04",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002222",
+      "KodeBooking": "1702R00220251229000181PAR022",
+      "NoRkmMedis": "077007",
+      "NamaPasien": "MUHAMMAD RAMADANI",
+      "NoRawat": "2025/12/29/000181",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:54.7033624+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:25:18",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002223",
+      "KodeBooking": "1702R00220251229000185PAR023",
+      "NoRkmMedis": "023919",
+      "NamaPasien": "BASUKI RAHMAD",
+      "NoRawat": "2025/12/29/000185",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:56.0803861+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:34:08",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002224",
+      "KodeBooking": "1702R00220251229000187OBG022",
+      "NoRkmMedis": "111852",
+      "NamaPasien": "RAIHANAH",
+      "NoRawat": "2025/12/29/000187",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:57.5280067+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:36:51",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225V002345",
+      "KodeBooking": "1702R00220251229000188IRM037",
+      "NoRkmMedis": "111262",
+      "NamaPasien": "MUSLIMIN",
+      "NoRawat": "2025/12/29/000188",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-29T15:32:40.7060755+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 11:41:05",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002226",
+      "KodeBooking": "1702R00220251229000190MAT035",
+      "NoRkmMedis": "111993",
+      "NamaPasien": "KURSANI",
+      "NoRawat": "2025/12/29/000190",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-29T15:33:58.7702655+08:00",
+      "Tasks": {
+        "3": {
+          "Waktu": "2025-12-29 10:44:02",
+          "BPJSStatus": "failed",
+          "BPJSCode": 208,
+          "Message": "TaskId=3 sudah ada"
+        }
+      },
+      "Error": ""
+    }
+  ]
+}
