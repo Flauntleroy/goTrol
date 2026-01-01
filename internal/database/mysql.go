@@ -32,7 +32,6 @@ func (m *MySQL) Close() error {
 	return m.DB.Close()
 }
 
-// GetBPJSCredentials reads BPJS credentials from mlite_settings table
 func (m *MySQL) GetBPJSCredentials() (*config.BPJSCredentials, error) {
 	creds := &config.BPJSCredentials{}
 

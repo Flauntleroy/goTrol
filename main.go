@@ -77,47 +77,40 @@ Examples:
 func runService() {
 	printBanner()
 
-	// Load config
 	cfg, err := config.Load("config.yaml")
 	if err != nil {
-		log.Fatalf("❌ Failed to load config: %v", err)
+		log.Fatalf(" Failed to load config: %v", err)
 	}
 
-	// Connect to MySQL
 	db, err := database.NewMySQL(cfg.Database)
 	if err != nil {
-		log.Fatalf("❌ Failed to connect to MySQL: %v", err)
+		log.Fatalf(" Failed to connect to MySQL: %v", err)
 	}
 	defer db.Close()
-	log.Println("✓ Connected to MySQL database")
+	log.Println(" Connected to MySQL database")
 
-	// Load BPJS credentials
 	creds, err := db.GetBPJSCredentials()
 	if err != nil {
-		log.Fatalf("❌ Failed to load BPJS credentials: %v", err)
+		log.Fatalf(" Failed to load BPJS credentials: %v", err)
 	}
-	log.Println("✓ BPJS credentials loaded from settings")
+	log.Println(" BPJS credentials loaded from settings")
 
-	// Initialize report store
 	reportStore, err := report.NewStore(cfg.Report.DBPath)
 	if err != nil {
-		log.Fatalf("❌ Failed to initialize report store: %v", err)
+		log.Fatalf(" Failed to initialize report store: %v", err)
 	}
 	defer reportStore.Close()
 
-	// NOTE: API server removed from here - now runs as separate GoTrolDashboard.exe
-	log.Println("ℹ️  Dashboard dipindah ke GoTrolDashboard.exe")
+	log.Println(" Run Dashboard @ GoTrolDashboard.exe")
 
-	// Start watcher
 	watcher := service.NewWatcher(db, creds, reportStore, cfg.Watcher.GetPollDuration())
 
-	// Handle graceful shutdown
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan, syscall.SIGINT, syscall.SIGTERM)
 
 	go func() {
 		<-sigChan
-		log.Println("\n🛑 Shutting down...")
+		log.Println("\n Shutting down...")
 		watcher.Stop()
 		os.Exit(0)
 	}()
@@ -147,13 +140,11 @@ func runBatch() {
 
 	printBanner()
 
-	// Load config
 	cfg, err := config.Load("config.yaml")
 	if err != nil {
 		log.Fatalf("Failed to load config: %v", err)
 	}
 
-	// Connect to MySQL
 	db, err := database.NewMySQL(cfg.Database)
 	if err != nil {
 		log.Fatalf("Failed to connect to MySQL: %v", err)
@@ -161,21 +152,18 @@ func runBatch() {
 	defer db.Close()
 	log.Println("Connected to MySQL database")
 
-	// Load BPJS credentials
 	creds, err := db.GetBPJSCredentials()
 	if err != nil {
 		log.Fatalf("Failed to load BPJS credentials: %v", err)
 	}
 	log.Println("BPJS credentials loaded from settings")
 
-	// Initialize report store
 	reportStore, err := report.NewStore(cfg.Report.DBPath)
 	if err != nil {
 		log.Fatalf("Failed to initialize report store: %v", err)
 	}
 	defer reportStore.Close()
 
-	// Create batch handler
 	batch := service.NewBatchHandler(db, creds, reportStore)
 
 	switch batchType {
@@ -221,7 +209,6 @@ func checkStatus() {
 
 	fmt.Printf("\n📡 Checking API at http://localhost:%d/api/status...\n", cfg.API.Port)
 
-	// Simple check - try to connect
 	db, err := database.NewMySQL(cfg.Database)
 	if err != nil {
 		fmt.Println("Database: Not connected")

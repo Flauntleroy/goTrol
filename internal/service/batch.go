@@ -14,7 +14,6 @@ import (
 	"gotrol/internal/report"
 )
 
-// BatchHandler handles manual batch operations
 type BatchHandler struct {
 	db          *database.MySQL
 	bpjsClient  *bpjs.Client
@@ -31,7 +30,6 @@ func NewBatchHandler(db *database.MySQL, creds *config.BPJSCredentials, reportSt
 	}
 }
 
-// BatchAutoOrder processes auto order for all BPJS patients on a date (without sending to BPJS)
 func (b *BatchHandler) BatchAutoOrder(date string) (int, int, error) {
 	log.Printf("🔄 Starting Batch Auto Order for date: %s", date)
 
@@ -46,7 +44,6 @@ func (b *BatchHandler) BatchAutoOrder(date string) (int, int, error) {
 	for idx, entry := range entries {
 		startTime := time.Now()
 
-		// Extract date for display
 		tanggal := entry.TanggalPeriksa
 		if len(tanggal) >= 10 {
 			tanggal = tanggal[:10]
@@ -54,17 +51,14 @@ func (b *BatchHandler) BatchAutoOrder(date string) (int, int, error) {
 
 		log.Printf("[%d/%d] %s - %s | %s | %s", idx+1, len(entries), entry.NoRkmMedis, entry.NamaPasien, entry.NamaPoli, tanggal)
 
-		// Get task times
 		tasks, generated, err := b.fetchTaskTimes(entry)
 		if err != nil {
-			log.Printf("   ❌ Error: %v", err)
+			log.Printf("     Error: %v", err)
 			continue
 		}
 
-		// Apply auto order
 		orderedTasks := b.processor.ProcessTasks(tasks)
 
-		// Check if any tasks available
 		hasAnyTask := false
 		for i := 0; i < 7; i++ {
 			if orderedTasks[i] != nil {
@@ -78,7 +72,6 @@ func (b *BatchHandler) BatchAutoOrder(date string) (int, int, error) {
 			continue
 		}
 
-		// Show compact task changes (only tasks that exist)
 		for i := 0; i < 7; i++ {
 			if orderedTasks[i] != nil {
 				origTime := ""
@@ -94,13 +87,11 @@ func (b *BatchHandler) BatchAutoOrder(date string) (int, int, error) {
 			}
 		}
 
-		// Save to database
 		if err := b.saveTaskIDs(entry, orderedTasks, generated); err != nil {
-			log.Printf("   ❌ Error saving: %v", err)
+			log.Printf("     Error saving: %v", err)
 			continue
 		}
 
-		// Save report if autoorder only
 		result := models.ProcessResult{
 			NomorReferensi: entry.NomorReferensi,
 			KodeBooking:    entry.KodeBooking,
@@ -123,7 +114,7 @@ func (b *BatchHandler) BatchAutoOrder(date string) (int, int, error) {
 		b.reportStore.SaveResult(result)
 
 		elapsed := time.Since(startTime)
-		log.Printf("   ✓ Done in %.1fs", elapsed.Seconds())
+		log.Printf("  Done in %.1fs", elapsed.Seconds())
 		successCount++
 	}
 
@@ -131,7 +122,6 @@ func (b *BatchHandler) BatchAutoOrder(date string) (int, int, error) {
 	return len(entries), successCount, nil
 }
 
-// BatchUpdateWaktu sends Update Waktu to BPJS for all processed entries on a date
 func (b *BatchHandler) BatchUpdateWaktu(date string) (int, int, error) {
 	log.Printf("🔄 Starting Batch Update Waktu for date: %s", date)
 
@@ -159,12 +149,12 @@ func (b *BatchHandler) BatchUpdateWaktu(date string) (int, int, error) {
 
 		tasks, generated, err := b.fetchTaskTimes(entry)
 		if err != nil {
-			log.Printf("   ❌ Error getting task times: %v", err)
+			log.Printf("     Error getting task times: %v", err)
 			continue
 		}
 		ordered := b.processor.ProcessTasks(tasks)
 		if err := b.saveTaskIDs(entry, ordered, generated); err != nil {
-			log.Printf("   ❌ Error saving normalized tasks: %v", err)
+			log.Printf("     Error saving normalized tasks: %v", err)
 		}
 
 		allSuccess := true
@@ -189,12 +179,12 @@ func (b *BatchHandler) BatchUpdateWaktu(date string) (int, int, error) {
 				taskResult.BPJSStatus = "error"
 				taskResult.Message = err.Error()
 				allSuccess = false
-				log.Printf("   ├── Task %d: ❌ Error", taskNum)
+				log.Printf("   ├── Task %d:   Error", taskNum)
 			} else {
 				taskResult.BPJSCode = resp.Metadata.Code
 				if resp.IsSuccess() {
 					taskResult.BPJSStatus = "success"
-					log.Printf("   ├── Task %d: ✓ 200 OK", taskNum)
+					log.Printf("   ├── Task %d:  200 OK", taskNum)
 					b.updateTaskStatus(entry.NomorReferensi, taskNum, "Sudah")
 					lastAcceptedMs = waktuMs
 				} else {
@@ -222,7 +212,7 @@ func (b *BatchHandler) BatchUpdateWaktu(date string) (int, int, error) {
 							taskResult.Waktu = time.UnixMilli(waktuMsRetry).Format("2006-01-02 15:04:05")
 							b.updateTaskWaktu(entry.NomorReferensi, taskNum, waktuMsRetry)
 							b.updateTaskStatus(entry.NomorReferensi, taskNum, "Sudah")
-							log.Printf("   ├── Task %d: ✓ 200 OK (retry +1h)", taskNum)
+							log.Printf("   ├── Task %d: 200 OK (retry +1h)", taskNum)
 							lastAcceptedMs = waktuMsRetry
 						} else {
 							taskResult.BPJSStatus = "failed"
@@ -253,7 +243,6 @@ func (b *BatchHandler) BatchUpdateWaktu(date string) (int, int, error) {
 	return len(entries), successCount, nil
 }
 
-// BatchAll runs both auto order and update waktu per-patient (atomic processing)
 func (b *BatchHandler) BatchAll(date string) (int, int, error) {
 	log.Printf("🔄 Starting Batch Auto Order + Update Waktu for date: %s", date)
 
@@ -268,7 +257,6 @@ func (b *BatchHandler) BatchAll(date string) (int, int, error) {
 	for idx, entry := range entries {
 		startTime := time.Now()
 
-		// Extract date for display
 		tanggal := entry.TanggalPeriksa
 		if len(tanggal) >= 10 {
 			tanggal = tanggal[:10]
@@ -276,17 +264,14 @@ func (b *BatchHandler) BatchAll(date string) (int, int, error) {
 
 		log.Printf("[%d/%d] %s - %s | %s | %s", idx+1, len(entries), entry.NoRkmMedis, entry.NamaPasien, entry.NamaPoli, tanggal)
 
-		// Step 1: Get task times
 		tasks, generated, err := b.fetchTaskTimes(entry)
 		if err != nil {
-			log.Printf("   ❌ Error: %v", err)
+			log.Printf("     Error: %v", err)
 			continue
 		}
 
-		// Step 2: Apply auto order
 		orderedTasks := b.processor.ProcessTasks(tasks)
 
-		// Check if any tasks available
 		hasAnyTask := false
 		for i := 0; i < 7; i++ {
 			if orderedTasks[i] != nil {
@@ -300,7 +285,6 @@ func (b *BatchHandler) BatchAll(date string) (int, int, error) {
 			continue
 		}
 
-		// Show compact task changes
 		for i := 0; i < 7; i++ {
 			if orderedTasks[i] != nil {
 				origTime := ""
@@ -316,9 +300,8 @@ func (b *BatchHandler) BatchAll(date string) (int, int, error) {
 			}
 		}
 
-		// Step 3: Save to database
 		if err := b.saveTaskIDs(entry, orderedTasks, generated); err != nil {
-			log.Printf("   ❌ Error saving: %v", err)
+			log.Printf("     Error saving: %v", err)
 			continue
 		}
 
@@ -333,7 +316,6 @@ func (b *BatchHandler) BatchAll(date string) (int, int, error) {
 			AutoOrderDone:  true,
 		}
 
-		// Step 4: Send to BPJS API
 		allSuccess := true
 		for i := 0; i < 7; i++ {
 			taskNum := i + 1
@@ -351,12 +333,12 @@ func (b *BatchHandler) BatchAll(date string) (int, int, error) {
 			if err != nil {
 				taskResult.BPJSStatus = "error"
 				taskResult.Message = err.Error()
-				log.Printf("   BPJS T%d: ❌ Error: %v", taskNum, err)
+				log.Printf("   BPJS T%d:   Error: %v", taskNum, err)
 				allSuccess = false
 			} else if resp.IsSuccess() {
 				taskResult.BPJSCode = resp.Metadata.Code
 				taskResult.BPJSStatus = "success"
-				log.Printf("   BPJS T%d: ✓ %d %s", taskNum, resp.Metadata.Code, resp.Metadata.Message)
+				log.Printf("   BPJS T%d: %d %s", taskNum, resp.Metadata.Code, resp.Metadata.Message)
 				b.updateTaskStatus(entry.NomorReferensi, taskNum, "Sudah")
 			} else {
 				taskResult.BPJSCode = resp.Metadata.Code
@@ -372,7 +354,7 @@ func (b *BatchHandler) BatchAll(date string) (int, int, error) {
 		b.reportStore.SaveResult(result)
 
 		elapsed := time.Since(startTime)
-		log.Printf("   ✓ Done in %.1fs", elapsed.Seconds())
+		log.Printf("   Done in %.1fs", elapsed.Seconds())
 
 		if allSuccess {
 			successCount++
@@ -383,7 +365,6 @@ func (b *BatchHandler) BatchAll(date string) (int, int, error) {
 	return len(entries), successCount, nil
 }
 
-// fetchAllBPJSEntries gets all BPJS patients for a date
 func (b *BatchHandler) fetchAllBPJSEntries(date string) ([]models.AntrianReferensi, error) {
 	query := `
 		SELECT 
@@ -413,7 +394,6 @@ func (b *BatchHandler) fetchAllBPJSEntries(date string) ([]models.AntrianReferen
 	return b.executeQuery(query, date)
 }
 
-// fetchEntriesWithTaskIDs gets entries that have task IDs saved
 func (b *BatchHandler) fetchEntriesWithTaskIDs(date string) ([]models.AntrianReferensi, error) {
 	query := `
 		SELECT 
@@ -485,21 +465,22 @@ func (b *BatchHandler) getTaskIDsFromDB(nomorReferensi string) (map[int]int64, e
 	return result, nil
 }
 
-// Reuse methods from watcher - simplified versions
 func (b *BatchHandler) fetchTaskTimes(entry models.AntrianReferensi) ([7]*time.Time, [7]bool, error) {
 	w := &Watcher{db: b.db, processor: NewAutoOrderProcessor()}
 	return w.fetchTaskTimes(entry)
 }
 
 func (b *BatchHandler) saveTaskIDs(entry models.AntrianReferensi, tasks [7]*time.Time, generated [7]bool) error {
-	// Extract date part from TanggalPeriksa
+
 	tanggal := entry.TanggalPeriksa
 	if len(tanggal) >= 10 {
 		tanggal = tanggal[:10]
 	}
 
-	// Get already completed tasks - don't touch these
-	completedTasks := b.getCompletedTaskIDs(entry.NomorReferensi)
+	_, err := b.db.DB.Exec("DELETE FROM mlite_antrian_referensi_taskid WHERE nomor_referensi = ?", entry.NomorReferensi)
+	if err != nil {
+		return err
+	}
 
 	keterangan := []string{
 		"Mulai tunggu admisi.",
@@ -512,32 +493,19 @@ func (b *BatchHandler) saveTaskIDs(entry models.AntrianReferensi, tasks [7]*time
 	}
 
 	for i := 0; i < 7; i++ {
-		taskNum := i + 1
-
-		// Skip if already completed - don't reset
-		if completedTasks[taskNum] {
-			continue
-		}
-
 		if tasks[i] == nil {
 			continue
 		}
-
 		waktuMs := TimeToMillis(tasks[i])
 		ket := keterangan[i]
 		if generated[i] {
 			ket = ket + " [generated]"
 		}
-
-		// UPSERT - insert or update if exists
 		_, err := b.db.DB.Exec(`
 			INSERT INTO mlite_antrian_referensi_taskid 
 			(tanggal_periksa, nomor_referensi, taskid, waktu, status, keterangan)
 			VALUES (?, ?, ?, ?, 'Belum', ?)
-			ON DUPLICATE KEY UPDATE 
-				waktu = IF(status != 'Sudah', VALUES(waktu), waktu),
-				keterangan = IF(status != 'Sudah', VALUES(keterangan), keterangan)
-		`, tanggal, entry.NomorReferensi, taskNum, waktuMs, ket)
+		`, tanggal, entry.NomorReferensi, i+1, waktuMs, ket)
 		if err != nil {
 			return err
 		}
@@ -567,26 +535,6 @@ func (b *BatchHandler) getMaxSentTime(nomorReferensi string) int64 {
 		return maxWaktu.Int64
 	}
 	return 0
-}
-
-// getCompletedTaskIDs returns map of task IDs that are already 'Sudah'
-func (b *BatchHandler) getCompletedTaskIDs(nomorReferensi string) map[int]bool {
-	result := make(map[int]bool)
-	rows, err := b.db.DB.Query(`
-		SELECT taskid FROM mlite_antrian_referensi_taskid 
-		WHERE nomor_referensi = ? AND status = 'Sudah'
-	`, nomorReferensi)
-	if err != nil {
-		return result
-	}
-	defer rows.Close()
-	for rows.Next() {
-		var taskID int
-		if rows.Scan(&taskID) == nil {
-			result[taskID] = true
-		}
-	}
-	return result
 }
 
 func (b *BatchHandler) fetchEntryByNomorReferensi(nr string) (*models.AntrianReferensi, error) {
@@ -648,7 +596,6 @@ func (b *BatchHandler) fetchEntriesFailedTask3ByReport(date string) ([]models.An
 	return entries, nil
 }
 
-// fetchEntriesFailedTask3 gets entries where Task 3 is not 'Sudah'
 func (b *BatchHandler) fetchEntriesFailedTask3(date string) ([]models.AntrianReferensi, error) {
 	query := `
 		SELECT 
@@ -684,7 +631,6 @@ func (b *BatchHandler) fetchEntriesFailedTask3(date string) ([]models.AntrianRef
 	return b.executeQuery(query, date)
 }
 
-// BatchRetryTask3 reprocesses and resubmits Task 3 for failed entries
 func (b *BatchHandler) BatchRetryTask3(date string) (int, int, error) {
 	log.Printf("🔄 Starting Batch Retry Task 3 for date: %s", date)
 	entries, err := b.fetchEntriesFailedTask3ByReport(date)
@@ -708,19 +654,17 @@ func (b *BatchHandler) BatchRetryTask3(date string) (int, int, error) {
 		}
 		log.Printf("[%d/%d] %s - %s | %s | %s", idx+1, len(entries), entry.NoRkmMedis, entry.NamaPasien, entry.NamaPoli, tanggal)
 
-		// Auto order ulang
 		tasks, generated, err := b.fetchTaskTimes(entry)
 		if err != nil {
-			log.Printf("   ❌ Error get tasks: %v", err)
+			log.Printf("     Error get tasks: %v", err)
 			continue
 		}
 		ordered := b.processor.ProcessTasks(tasks)
 		if err := b.saveTaskIDs(entry, ordered, generated); err != nil {
-			log.Printf("   ❌ Error save tasks: %v", err)
+			log.Printf("     Error save tasks: %v", err)
 			continue
 		}
 
-		// Kirim ulang hanya Task 3
 		i := 2
 		taskNum := 3
 		if ordered[i] == nil {
@@ -752,13 +696,13 @@ func (b *BatchHandler) BatchRetryTask3(date string) (int, int, error) {
 		if err != nil {
 			taskResult.BPJSStatus = "error"
 			taskResult.Message = err.Error()
-			log.Printf("   ├── Task 3: ❌ Error: %v", err)
+			log.Printf("   ├── Task 3:   Error: %v", err)
 		} else {
 			taskResult.BPJSCode = resp.Metadata.Code
 			msgLower := strings.ToLower(resp.Metadata.Message)
 			if resp.IsSuccess() {
 				taskResult.BPJSStatus = "success"
-				log.Printf("   ├── Task 3: ✓ 200 OK")
+				log.Printf("   ├── Task 3: 200 OK")
 				b.updateTaskStatus(entry.NomorReferensi, taskNum, "Sudah")
 				successCount++
 				result.UpdateWaktuDone = true
@@ -785,7 +729,7 @@ func (b *BatchHandler) BatchRetryTask3(date string) (int, int, error) {
 					taskResult.Waktu = time.UnixMilli(waktuMsRetry).Format("2006-01-02 15:04:05")
 					b.updateTaskWaktu(entry.NomorReferensi, taskNum, waktuMsRetry)
 					b.updateTaskStatus(entry.NomorReferensi, taskNum, "Sudah")
-					log.Printf("   ├── Task 3: ✓ 200 OK (retry +1h)")
+					log.Printf("   ├── Task 3: 200 OK (retry +1h)")
 					successCount++
 					result.UpdateWaktuDone = true
 				} else {
@@ -805,7 +749,7 @@ func (b *BatchHandler) BatchRetryTask3(date string) (int, int, error) {
 		result.Tasks[taskNum] = taskResult
 		b.reportStore.SaveResult(result)
 		elapsed := time.Since(startTime)
-		log.Printf("   ✓ Done in %.1fs", elapsed.Seconds())
+		log.Printf("   Done in %.1fs", elapsed.Seconds())
 	}
 
 	log.Printf("✅ Retry Task 3 complete: %d/%d success", successCount, len(entries))

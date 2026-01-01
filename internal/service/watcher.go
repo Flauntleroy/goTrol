@@ -15,7 +15,6 @@ import (
 	"gotrol/internal/report"
 )
 
-// Watcher monitors the database for new entries to process
 type Watcher struct {
 	db           *database.MySQL
 	bpjsClient   *bpjs.Client
@@ -38,7 +37,6 @@ func NewWatcher(db *database.MySQL, creds *config.BPJSCredentials, reportStore *
 	}
 }
 
-// Start begins watching for new entries
 func (w *Watcher) Start() {
 	log.Println(" Watching for new entries...")
 	ticker := time.NewTicker(w.pollInterval)
@@ -49,7 +47,6 @@ func (w *Watcher) Start() {
 	spinner := []string{"⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"}
 	spinIdx := 0
 
-	// Spinner animation goroutine
 	spinnerTicker := time.NewTicker(100 * time.Millisecond)
 	defer spinnerTicker.Stop()
 
@@ -64,8 +61,8 @@ func (w *Watcher) Start() {
 	for {
 		select {
 		case <-w.stopChan:
-			fmt.Println() // New line before stop message
-			log.Println("🛑 Watcher stopped")
+			fmt.Println()
+			log.Println("Watcher stopped")
 			return
 		case <-ticker.C:
 			found := w.checkAndProcess()
@@ -76,17 +73,14 @@ func (w *Watcher) Start() {
 	}
 }
 
-// Stop stops the watcher
 func (w *Watcher) Stop() {
 	close(w.stopChan)
 }
 
-// checkAndProcess checks for new entries and processes them
-// Returns number of entries found
 func (w *Watcher) checkAndProcess() int {
 	entries, err := w.fetchPendingEntries()
 	if err != nil {
-		log.Printf("❌ Error fetching entries: %v", err)
+		log.Printf("  Error fetching entries: %v", err)
 		return 0
 	}
 
@@ -100,11 +94,10 @@ func (w *Watcher) checkAndProcess() int {
 		w.processEntry(entry)
 	}
 
-	log.Println("⏳ Watching for new entries...")
+	log.Println(" Watching for new entries...")
 	return len(entries)
 }
 
-// fetchPendingEntries gets entries with status_kirim = 'Sudah' and JB = BPJS that haven't been processed
 func (w *Watcher) fetchPendingEntries() ([]models.AntrianReferensi, error) {
 	today := time.Now().Format("2006-01-02")
 
@@ -177,7 +170,6 @@ func (w *Watcher) fetchPendingEntries() ([]models.AntrianReferensi, error) {
 	return entries, nil
 }
 
-// processEntry processes a single entry - auto order + update waktu
 func (w *Watcher) processEntry(entry models.AntrianReferensi) {
 	startTime := time.Now()
 	log.Printf("🔄 Processing: %s - %s (Ref: %s)", entry.NoRkmMedis, entry.NamaPasien, entry.NomorReferensi)
@@ -192,30 +184,26 @@ func (w *Watcher) processEntry(entry models.AntrianReferensi) {
 		Tasks:          make(map[int]models.TaskResult),
 	}
 
-	// Step 1: Get current task times
 	tasks, generated, err := w.fetchTaskTimes(entry)
 	if err != nil {
-		log.Printf("   └── ❌ Error fetching task times: %v", err)
+		log.Printf("   └──  Error fetching task times: %v", err)
 		result.Error = err.Error()
 		w.reportStore.SaveResult(result)
 		return
 	}
 
-	// Step 2: Apply auto order logic
 	orderedTasks := w.processor.ProcessTasks(tasks)
-	log.Println("   ├── Auto Order: Task 1-7 ordered ✓")
+	log.Println("   ├── Auto Order: Task 1-7 ordered ")
 	result.AutoOrderDone = true
 
-	// Step 3: Save to database
 	if err := w.saveTaskIDs(entry, orderedTasks, generated); err != nil {
-		log.Printf("   └── ❌ Error saving task IDs: %v", err)
+		log.Printf("   └──  Error saving task IDs: %v", err)
 		result.Error = err.Error()
 		w.reportStore.SaveResult(result)
 		return
 	}
-	log.Println("   ├── Saved to mlite_antrian_referensi_taskid ✓")
+	log.Println("   ├── Saved to mlite_antrian_referensi_taskid ")
 
-	// Step 4: Send to BPJS
 	allSuccess := true
 	lastAcceptedMs := w.getMaxSentTime(entry.NomorReferensi)
 	completedTasks := w.getCompletedTaskIDs(entry.NomorReferensi)
@@ -223,7 +211,6 @@ func (w *Watcher) processEntry(entry models.AntrianReferensi) {
 	for i := 0; i < 7; i++ {
 		taskNum := i + 1
 
-		// Skip if already completed in DB
 		if completedTasks[taskNum] {
 			result.Tasks[taskNum] = models.TaskResult{
 				Waktu:      "",
@@ -234,7 +221,6 @@ func (w *Watcher) processEntry(entry models.AntrianReferensi) {
 			continue
 		}
 
-		// Skip if no data for this task
 		if orderedTasks[i] == nil {
 			result.Tasks[taskNum] = models.TaskResult{
 				Waktu:      "",
@@ -258,21 +244,21 @@ func (w *Watcher) processEntry(entry models.AntrianReferensi) {
 			taskResult.BPJSStatus = "error"
 			taskResult.Message = err.Error()
 			allSuccess = false
-			log.Printf("   ├── BPJS Task %d: ❌ Error: %v", taskNum, err)
+			log.Printf("   ├── BPJS Task %d:  Error: %v", taskNum, err)
 		} else {
 			taskResult.BPJSCode = resp.Metadata.Code
 			msgLower := strings.ToLower(resp.Metadata.Message)
 
 			if resp.IsSuccess() {
 				taskResult.BPJSStatus = "success"
-				log.Printf("   ├── BPJS Task %d: 200 OK ✓", taskNum)
+				log.Printf("   ├── BPJS Task %d: 200 OK ", taskNum)
 				w.updateTaskStatus(entry.NomorReferensi, taskNum, "Sudah")
 				lastAcceptedMs = waktuMs
 			} else if resp.Metadata.Code == 208 && strings.Contains(msgLower, "sudah ada") {
-				// BPJS says task already exists - treat as success
+
 				taskResult.BPJSStatus = "success"
 				taskResult.Message = resp.Metadata.Message
-				log.Printf("   ├── BPJS Task %d: 208 Sudah ada ✓", taskNum)
+				log.Printf("   ├── BPJS Task %d: 208 Sudah ada ", taskNum)
 				w.updateTaskStatus(entry.NomorReferensi, taskNum, "Sudah")
 				lastAcceptedMs = waktuMs
 			} else if strings.Contains(msgLower, "tidak boleh kurang atau sama") {
@@ -298,14 +284,14 @@ func (w *Watcher) processEntry(entry models.AntrianReferensi) {
 					taskResult.Waktu = time.UnixMilli(waktuMsRetry).Format("2006-01-02 15:04:05")
 					w.updateTaskWaktu(entry.NomorReferensi, taskNum, waktuMsRetry)
 					w.updateTaskStatus(entry.NomorReferensi, taskNum, "Sudah")
-					log.Printf("   ├── BPJS Task %d: 200 OK ✓ (retry +1h)", taskNum)
+					log.Printf("   ├── BPJS Task %d: 200 OK (retry +1h)", taskNum)
 					lastAcceptedMs = waktuMsRetry
 				} else if err2 == nil && resp2.Metadata.Code == 208 && strings.Contains(strings.ToLower(resp2.Metadata.Message), "sudah ada") {
 					taskResult.BPJSCode = resp2.Metadata.Code
 					taskResult.BPJSStatus = "success"
 					taskResult.Message = resp2.Metadata.Message
 					w.updateTaskStatus(entry.NomorReferensi, taskNum, "Sudah")
-					log.Printf("   ├── BPJS Task %d: 208 Sudah ada ✓", taskNum)
+					log.Printf("   ├── BPJS Task %d: 208 Sudah ada ", taskNum)
 					lastAcceptedMs = waktuMsRetry
 				} else {
 					taskResult.BPJSStatus = "failed"
@@ -330,7 +316,6 @@ func (w *Watcher) processEntry(entry models.AntrianReferensi) {
 	w.reportStore.SaveResult(result)
 }
 
-// fetchTaskTimes gets current task times from various sources
 func (w *Watcher) fetchTaskTimes(entry models.AntrianReferensi) ([7]*time.Time, [7]bool, error) {
 	var tasks [7]*time.Time
 	var generated [7]bool
@@ -358,7 +343,6 @@ func (w *Watcher) fetchTaskTimes(entry models.AntrianReferensi) ([7]*time.Time, 
 	return tasks, generated, nil
 }
 
-// getExistingTaskIDs fetches existing task IDs from database
 func (w *Watcher) getExistingTaskIDs(nomorReferensi string) ([]models.TaskID, error) {
 	query := `
 		SELECT tanggal_periksa, nomor_referensi, taskid, waktu, status, keterangan
@@ -382,20 +366,16 @@ func (w *Watcher) getExistingTaskIDs(nomorReferensi string) ([]models.TaskID, er
 	return tasks, nil
 }
 
-// getTaskTimesFromSources fetches task times from source tables (loket, mutasi_berkas, etc.)
-// Falls back to reg_periksa datetime if no data found (like PHP does)
 func (w *Watcher) getTaskTimesFromSources(entry models.AntrianReferensi) ([7]*time.Time, [7]bool, error) {
 	var tasks [7]*time.Time
 	var generated [7]bool
 	loc := time.Local
 
-	// Extract date part from TanggalPeriksa (may be ISO format like 2025-12-24T00:00:00+08:00)
 	tanggal := entry.TanggalPeriksa
 	if len(tanggal) >= 10 {
-		tanggal = tanggal[:10] // Take only YYYY-MM-DD part
+		tanggal = tanggal[:10]
 	}
 
-	// First, get default time from reg_periksa using no_rawat (tgl_registrasi + jam_reg)
 	var tglReg, jamReg sql.NullString
 	var defaultTime *time.Time
 
@@ -405,7 +385,7 @@ func (w *Watcher) getTaskTimesFromSources(entry models.AntrianReferensi) ([7]*ti
 			WHERE no_rawat = ?
 		`, entry.NoRawat).Scan(&tglReg, &jamReg)
 		if err == nil && tglReg.Valid && jamReg.Valid {
-			// Also extract date part from tglReg
+
 			tglStr := tglReg.String
 			if len(tglStr) >= 10 {
 				tglStr = tglStr[:10]
@@ -416,14 +396,12 @@ func (w *Watcher) getTaskTimesFromSources(entry models.AntrianReferensi) ([7]*ti
 		}
 	}
 
-	// If no default time, try parsing from TanggalPeriksa with 08:00
 	if defaultTime == nil {
 		if t, err := time.ParseInLocation("2006-01-02 15:04:05", tanggal+" 08:00:00", loc); err == nil {
 			defaultTime = &t
 		}
 	}
 
-	// Task 1 & 2: from mlite_antrian_loket OR default
 	var startTime, endTime sql.NullString
 	var err error
 	err = w.db.DB.QueryRow(`
@@ -443,7 +421,7 @@ func (w *Watcher) getTaskTimesFromSources(entry models.AntrianReferensi) ([7]*ti
 			}
 		}
 	}
-	// Fallback to default time
+
 	if tasks[0] == nil && defaultTime != nil {
 		t := *defaultTime
 		tasks[0] = &t
@@ -453,7 +431,6 @@ func (w *Watcher) getTaskTimesFromSources(entry models.AntrianReferensi) ([7]*ti
 		tasks[1] = &t
 	}
 
-	// Task 3: from mutasi_berkas.dikirim (NO FALLBACK - only use actual data)
 	var dikirim sql.NullString
 	err = w.db.DB.QueryRow(`
 		SELECT dikirim FROM mutasi_berkas 
@@ -469,7 +446,6 @@ func (w *Watcher) getTaskTimesFromSources(entry models.AntrianReferensi) ([7]*ti
 		}
 	}
 
-	// Task 4: from mutasi_berkas.diterima (NO FALLBACK - only use actual data)
 	var diterima sql.NullString
 	err = w.db.DB.QueryRow(`
 		SELECT diterima FROM mutasi_berkas 
@@ -485,7 +461,6 @@ func (w *Watcher) getTaskTimesFromSources(entry models.AntrianReferensi) ([7]*ti
 		}
 	}
 
-	// Task 5: from pemeriksaan_ralan (NO FALLBACK - only use actual data)
 	var tglPerawatan, jamRawat sql.NullString
 	err = w.db.DB.QueryRow(`
 		SELECT tgl_perawatan, jam_rawat FROM pemeriksaan_ralan 
@@ -501,14 +476,13 @@ func (w *Watcher) getTaskTimesFromSources(entry models.AntrianReferensi) ([7]*ti
 		}
 	}
 
-	// Task 6 & 7: from resep_obat - NO DEFAULT (optional tasks)
 	var tglPeresepan, jam, jamPeresepan sql.NullString
 	err = w.db.DB.QueryRow(`
 		SELECT tgl_peresepan, jam, jam_peresepan FROM resep_obat 
 		WHERE no_rawat = ?
 	`, entry.NoRawat).Scan(&tglPeresepan, &jam, &jamPeresepan)
 	if err == nil {
-		// Extract date part from tglPeresepan
+
 		tglStr := ""
 		if tglPeresepan.Valid && tglPeresepan.String != "" {
 			tglStr = tglPeresepan.String
@@ -528,7 +502,6 @@ func (w *Watcher) getTaskTimesFromSources(entry models.AntrianReferensi) ([7]*ti
 		}
 	}
 
-	// Fallback generation for Task 3, 4, 5 when missing
 	if tasks[2] == nil {
 		var base *time.Time
 		if tasks[1] != nil {
@@ -586,7 +559,6 @@ func (w *Watcher) getTaskTimesFromSources(entry models.AntrianReferensi) ([7]*ti
 		}
 	}
 
-	// Audit log for fallback generation
 	var gens []int
 	for i := 2; i <= 4; i++ {
 		if generated[i] {
@@ -600,16 +572,13 @@ func (w *Watcher) getTaskTimesFromSources(entry models.AntrianReferensi) ([7]*ti
 	return tasks, generated, nil
 }
 
-// saveTaskIDs saves the processed task IDs to database
-// Preserves tasks that are already 'Sudah' - does not reset them
 func (w *Watcher) saveTaskIDs(entry models.AntrianReferensi, tasks [7]*time.Time, generated [7]bool) error {
-	// Extract date part from TanggalPeriksa
+
 	tanggal := entry.TanggalPeriksa
 	if len(tanggal) >= 10 {
 		tanggal = tanggal[:10]
 	}
 
-	// Get already completed tasks - don't touch these
 	completedTasks := w.getCompletedTaskIDs(entry.NomorReferensi)
 
 	keterangan := []string{
@@ -625,7 +594,6 @@ func (w *Watcher) saveTaskIDs(entry models.AntrianReferensi, tasks [7]*time.Time
 	for i := 0; i < 7; i++ {
 		taskNum := i + 1
 
-		// Skip if already completed - don't reset
 		if completedTasks[taskNum] {
 			continue
 		}
@@ -640,7 +608,6 @@ func (w *Watcher) saveTaskIDs(entry models.AntrianReferensi, tasks [7]*time.Time
 			ket = ket + " [generated]"
 		}
 
-		// UPSERT - insert or update if exists
 		_, err := w.db.DB.Exec(`
 			INSERT INTO mlite_antrian_referensi_taskid 
 			(tanggal_periksa, nomor_referensi, taskid, waktu, status, keterangan)
@@ -657,7 +624,6 @@ func (w *Watcher) saveTaskIDs(entry models.AntrianReferensi, tasks [7]*time.Time
 	return nil
 }
 
-// updateTaskStatus updates the status of a task in database
 func (w *Watcher) updateTaskStatus(nomorReferensi string, taskID int, status string) {
 	_, _ = w.db.DB.Exec(`
 		UPDATE mlite_antrian_referensi_taskid 
@@ -686,7 +652,6 @@ func (w *Watcher) getMaxSentTime(nomorReferensi string) int64 {
 	return 0
 }
 
-// getCompletedTaskIDs returns map of task IDs that are already 'Sudah'
 func (w *Watcher) getCompletedTaskIDs(nomorReferensi string) map[int]bool {
 	result := make(map[int]bool)
 	rows, err := w.db.DB.Query(`

@@ -1,0 +1,2700 @@
+{
+  "date": "2025-12-31",
+  "results": [
+    {
+      "NomorReferensi": "1702R0021225K001571",
+      "KodeBooking": "1702R00220251230000018SAR008",
+      "NoRkmMedis": "108542",
+      "NamaPasien": "SULKARTINI",
+      "NoRawat": "2025/12/30/000018",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-31T00:00:00.6149273+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-30 08:00:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "2": {
+          "Waktu": "2025-12-30 08:01:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "3": {
+          "Waktu": "2025-12-30 08:02:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "4": {
+          "Waktu": "2025-12-30 08:03:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "5": {
+          "Waktu": "2025-12-30 08:05:00",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "6": {
+          "Waktu": "2025-12-30 10:08:14",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "7": {
+          "Waktu": "2025-12-30 10:13:14",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "0284U0061225P000076",
+      "KodeBooking": "1702R00220251230000078INT033",
+      "NoRkmMedis": "004020",
+      "NamaPasien": "FATMAH",
+      "NoRawat": "2025/12/30/000078",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-31T00:00:01.8068801+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-30 08:15:53",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "2": {
+          "Waktu": "2025-12-30 08:16:53",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "3": {
+          "Waktu": "2025-12-30 08:17:53",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "4": {
+          "Waktu": "2025-12-30 08:18:53",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "5": {
+          "Waktu": "2025-12-30 08:40:53",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "6": {
+          "Waktu": "2025-12-30 10:47:19",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "7": {
+          "Waktu": "2025-12-30 10:48:19",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K000957",
+      "KodeBooking": "1702R00220251230000113SAR029",
+      "NoRkmMedis": "081420",
+      "NamaPasien": "HJ.SITI MAISYARAH",
+      "NoRawat": "2025/12/30/000113",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-31T00:00:02.8039482+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-30 08:48:06",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "2": {
+          "Waktu": "2025-12-30 08:49:06",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "3": {
+          "Waktu": "2025-12-30 08:51:06",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "4": {
+          "Waktu": "2025-12-30 08:55:06",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "5": {
+          "Waktu": "2025-12-30 09:14:06",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "6": {
+          "Waktu": "2025-12-30 11:05:08",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "7": {
+          "Waktu": "2025-12-30 11:10:08",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170203021225Y000517",
+      "KodeBooking": "1702R00220251230000122INT044",
+      "NoRkmMedis": "079257",
+      "NamaPasien": "WIWIN RIRI ARIANTI",
+      "NoRawat": "2025/12/30/000122",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-31T00:00:03.8654249+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-30 08:55:56",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "2": {
+          "Waktu": "2025-12-30 08:56:56",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "3": {
+          "Waktu": "2025-12-30 09:00:56",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "4": {
+          "Waktu": "2025-12-30 09:03:56",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "5": {
+          "Waktu": "2025-12-30 09:24:56",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "6": {
+          "Waktu": "2025-12-30 12:03:37",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "7": {
+          "Waktu": "2025-12-30 12:05:37",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002293",
+      "KodeBooking": "1702R00220251230000148INT051",
+      "NoRkmMedis": "108572",
+      "NamaPasien": "SUNITI",
+      "NoRawat": "2025/12/30/000148",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": false,
+      "ProcessedAt": "2025-12-31T00:00:05.0800875+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-30 09:21:33",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "2": {
+          "Waktu": "2025-12-30 09:23:33",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "3": {
+          "Waktu": "2025-12-30 09:24:33",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "4": {
+          "Waktu": "2025-12-30 09:31:33",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "5": {
+          "Waktu": "2025-12-30 09:43:33",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "6": {
+          "Waktu": "2025-12-30 12:40:35",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        },
+        "7": {
+          "Waktu": "2025-12-30 12:43:35",
+          "BPJSStatus": "failed",
+          "BPJSCode": 201,
+          "Message": "Kode Booking tidak ditemukan"
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225V003384",
+      "KodeBooking": "1702R00220251231000052IRM010",
+      "NoRkmMedis": "093138",
+      "NamaPasien": "HAMDANAH",
+      "NoRawat": "2025/12/31/000052",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T08:13:36.8400927+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:10:34",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:13:34",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:15:34",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 08:21:34",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 08:46:34",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002402",
+      "KodeBooking": "1702R00220251231000058OBG004",
+      "NoRkmMedis": "107233",
+      "NamaPasien": "MAESSY SHOPYA",
+      "NoRawat": "2025/12/31/000058",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T08:14:52.1030852+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:13:56",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:15:56",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:18:56",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 08:25:56",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 08:50:56",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001243",
+      "KodeBooking": "1702R00220251231000069ANA002",
+      "NoRkmMedis": "110486",
+      "NamaPasien": "MUHAMMAD HASNAN",
+      "NoRawat": "2025/12/31/000069",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T08:20:32.7827959+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:19:28",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:21:28",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:23:28",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 08:27:28",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 08:42:28",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225V003409",
+      "KodeBooking": "1702R00220251231000073IRM020",
+      "NoRkmMedis": "110751",
+      "NamaPasien": "MARIDA",
+      "NoRawat": "2025/12/31/000073",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T08:22:38.103876+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:21:07",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:22:07",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:25:07",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 08:29:07",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 08:53:07",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170205011225Y000788",
+      "KodeBooking": "1702R00220251231000077OBG005",
+      "NoRkmMedis": "086442",
+      "NamaPasien": "SISKA ARIYANI",
+      "NoRawat": "2025/12/31/000077",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T08:23:58.3677613+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:23:15",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:25:15",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:26:15",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 08:36:15",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 08:50:15",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225V002602",
+      "KodeBooking": "1702R00220251231000076IRM021",
+      "NoRkmMedis": "060117",
+      "NamaPasien": "SARINAH",
+      "NoRawat": "2025/12/31/000076",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T08:24:23.6134383+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:22:53",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:23:53",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:25:53",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 08:27:53",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 08:42:53",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225V003349",
+      "KodeBooking": "1702R00220251231000083IRM023",
+      "NoRkmMedis": "109142",
+      "NamaPasien": "SURIADI",
+      "NoRawat": "2025/12/31/000083",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T08:28:19.0523658+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:26:51",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:29:51",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:31:51",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 08:39:51",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 08:58:51",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170213011225Y001046",
+      "KodeBooking": "1702R00220251231000084PAR004",
+      "NoRkmMedis": "103265",
+      "NamaPasien": "M. AINI",
+      "NoRawat": "2025/12/31/000084",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T08:29:49.0936233+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:28:35",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:29:35",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:30:35",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 08:35:35",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 08:46:35",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170202011225Y000468",
+      "KodeBooking": "1702R00220251231000094PAR006",
+      "NoRkmMedis": "106750",
+      "NamaPasien": "BARLIAN",
+      "NoRawat": "2025/12/31/000094",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T08:42:09.8291121+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:40:53",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:41:53",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:42:53",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 08:45:53",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:05:53",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170203011225Y001205",
+      "KodeBooking": "1702R00220251231000101OBG007",
+      "NoRkmMedis": "042577",
+      "NamaPasien": "ISMAUL HUSNA",
+      "NoRawat": "2025/12/31/000101",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T08:47:35.4094795+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:46:38",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:49:38",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:51:38",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 08:53:38",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:06:38",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225V003365",
+      "KodeBooking": "1702R00220251231000102IRM028",
+      "NoRkmMedis": "003934",
+      "NamaPasien": "HJ. INDRAYANI",
+      "NoRawat": "2025/12/31/000102",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T08:49:25.6405947+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:47:16",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:48:16",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:51:16",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 08:56:16",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:20:16",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001110",
+      "KodeBooking": "1702R00220251231000112GPR006",
+      "NoRkmMedis": "084271",
+      "NamaPasien": "JUMITUN",
+      "NoRawat": "2025/12/31/000112",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T08:56:26.3998759+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:55:03",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:58:03",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:59:03",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:05:03",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:22:03",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170204011225Y000741",
+      "KodeBooking": "1702R00220251231000118OBG011",
+      "NoRkmMedis": "093717",
+      "NamaPasien": "MISRAH",
+      "NoRawat": "2025/12/31/000118",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:05:31.597029+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 09:02:58",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:03:58",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:08:58",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:13:58",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:28:58",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021125K000803",
+      "KodeBooking": "1702R00220251231000126OBG015",
+      "NoRkmMedis": "111004",
+      "NamaPasien": "RADA PURWANINGSIH",
+      "NoRawat": "2025/12/31/000126",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:12:32.2880597+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 09:10:16",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:12:16",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:13:16",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:22:16",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:36:16",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002408",
+      "KodeBooking": "1702R00220251231000125OBG014",
+      "NoRkmMedis": "098427",
+      "NamaPasien": "MISGIANTI",
+      "NoRawat": "2025/12/31/000125",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:12:42.7050235+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 09:09:05",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:11:05",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:12:05",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:15:05",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:25:05",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170213011225Y000994",
+      "KodeBooking": "1702R00220251231000007OBG002",
+      "NoRkmMedis": "084129",
+      "NamaPasien": "DEWI PRIBOWATI",
+      "NoRawat": "2025/12/31/000007",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:15:12.1739897+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:00:00",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:01:00",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:02:00",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 08:03:00",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 08:06:00",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170203021225Y000559",
+      "KodeBooking": "1702R00220251231000027PAR002",
+      "NoRkmMedis": "045939",
+      "NamaPasien": "MARKAMAH",
+      "NoRawat": "2025/12/31/000027",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:16:27.4712502+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:00:00",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:01:00",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:52:00",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 08:56:51",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 08:59:51",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K000056",
+      "KodeBooking": "1702R00220251231000074PAR003",
+      "NoRkmMedis": "009893",
+      "NamaPasien": "IDA LAILA,A.MD",
+      "NoRawat": "2025/12/31/000074",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:16:57.8291965+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:22:42",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:26:42",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:51:56",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 08:52:56",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:00:45",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K000058",
+      "KodeBooking": "1702R00220251231000091PAR005",
+      "NoRkmMedis": "105770",
+      "NamaPasien": "LIA",
+      "NoRawat": "2025/12/31/000091",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:17:37.8210709+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:37:21",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:38:21",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:02:20",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:03:20",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:05:16",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002411",
+      "KodeBooking": "1702R00220251231000100PAR007",
+      "NoRkmMedis": "035857",
+      "NamaPasien": "SELVIA RANI",
+      "NoRawat": "2025/12/31/000100",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:18:55.1182721+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:46:32",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:47:32",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:48:32",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 08:55:32",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:11:32",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170203021225Y000543",
+      "KodeBooking": "1702R00220251231000129OBG016",
+      "NoRkmMedis": "100247",
+      "NamaPasien": "HIZRATI",
+      "NoRawat": "2025/12/31/000129",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:18:56.7269718+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 09:17:33",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:18:33",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:20:33",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:21:33",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:44:33",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170205011225Y000641",
+      "KodeBooking": "1702R00220251231000130GPR007",
+      "NoRkmMedis": "097024",
+      "NamaPasien": "NURHIKMAHWATI",
+      "NoRawat": "2025/12/31/000130",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:19:28.0830279+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 09:18:19",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:19:19",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:20:19",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:21:19",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:37:19",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170204011225Y000759",
+      "KodeBooking": "1702R00220251231000124OBG013",
+      "NoRkmMedis": "112146",
+      "NamaPasien": "NORLAILA",
+      "NoRawat": "2025/12/31/000124",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:21:33.341748+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 09:08:32",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:09:32",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:10:32",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:16:32",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:27:32",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002420",
+      "KodeBooking": "1702R00220251231000131OBG017",
+      "NoRkmMedis": "059529",
+      "NamaPasien": "DIKA PUTRI SETIAWATI",
+      "NoRawat": "2025/12/31/000131",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:22:03.7905288+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 09:20:23",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:23:23",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:24:23",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:30:23",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:52:23",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170213011225Y001022",
+      "KodeBooking": "1702R00220251231000133OBG018",
+      "NoRkmMedis": "063299",
+      "NamaPasien": "PURNAMA SARI",
+      "NoRawat": "2025/12/31/000133",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:24:13.5684141+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 09:23:05",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:25:05",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:28:05",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:34:05",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:54:05",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K000078",
+      "KodeBooking": "1702R00220251231000114PAR008",
+      "NoRkmMedis": "097076",
+      "NamaPasien": "ABDURRAHMAN",
+      "NoRawat": "2025/12/31/000114",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:29:34.1861106+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:57:37",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:02:37",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:09:47",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:11:54",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:14:37",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002433",
+      "KodeBooking": "1702R00220251231000141IRM034",
+      "NoRkmMedis": "090794",
+      "NamaPasien": "SUPRIYADI",
+      "NoRawat": "2025/12/31/000141",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:31:49.8671575+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 09:30:11",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:31:11",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:32:11",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:42:11",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:59:11",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170203021225Y000529",
+      "KodeBooking": "1702R00220251231000142GPR008",
+      "NoRkmMedis": "112149",
+      "NamaPasien": "LATIFFAH",
+      "NoRawat": "2025/12/31/000142",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:34:24.4015101+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 09:33:02",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:34:02",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:36:02",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:42:02",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:55:02",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002438",
+      "KodeBooking": "1702R00220251231000147PAR010",
+      "NoRkmMedis": "102652",
+      "NamaPasien": "NURHASANAH",
+      "NoRawat": "2025/12/31/000147",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:38:50.5793699+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 09:37:31",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:38:31",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:42:31",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:43:31",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 10:07:31",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170207011225Y000877",
+      "KodeBooking": "1702R00220251231000149PAR011",
+      "NoRkmMedis": "112151",
+      "NamaPasien": "GUSTI MUKRI",
+      "NoRawat": "2025/12/31/000149",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:42:34.8577396+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 09:41:36",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:42:36",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:46:36",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:56:36",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 10:11:36",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170213011225Y000376",
+      "KodeBooking": "1702R00220251231000150OBG020",
+      "NoRkmMedis": "112152",
+      "NamaPasien": "NOR AISYAH",
+      "NoRawat": "2025/12/31/000150",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:44:55.7529723+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 09:43:31",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:44:31",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:49:31",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:54:31",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 10:10:31",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170204011225Y000760",
+      "KodeBooking": "1702R00220251231000151PAR012",
+      "NoRkmMedis": "045075",
+      "NamaPasien": "BARKIAH",
+      "NoRawat": "2025/12/31/000151",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:47:25.4404712+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 09:45:37",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:49:37",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:50:37",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 10:00:37",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 10:21:37",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "028400011225Y000403",
+      "KodeBooking": "1702R00220251231000153PAR013",
+      "NoRkmMedis": "101717",
+      "NamaPasien": "MASRUPAH",
+      "NoRawat": "2025/12/31/000153",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:49:25.3505796+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 09:47:37",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:48:37",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:52:37",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 10:01:37",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 10:15:37",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225V003459",
+      "KodeBooking": "1702R00220251231000154IRM036",
+      "NoRkmMedis": "111262",
+      "NamaPasien": "MUSLIMIN",
+      "NoRawat": "2025/12/31/000154",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:50:56.7205124+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 09:48:25",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:49:25",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:50:25",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 10:00:25",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 10:20:25",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K000664",
+      "KodeBooking": "1702R00220251231000156GPR009",
+      "NoRkmMedis": "053899",
+      "NamaPasien": "NORJANAH",
+      "NoRawat": "2025/12/31/000156",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:52:51.9227942+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 09:51:44",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:53:44",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:54:44",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 10:04:44",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 10:27:44",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001102",
+      "KodeBooking": "1702R00220251231000048GPR001",
+      "NoRkmMedis": "103512",
+      "NamaPasien": "AKHMAD HERDIAN",
+      "NoRawat": "2025/12/31/000048",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:53:57.803891+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:06:05",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:07:05",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:42:17",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:43:17",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:47:17",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021125K000281",
+      "KodeBooking": "1702R00220251231000157GPR010",
+      "NoRkmMedis": "110009",
+      "NamaPasien": "ASMA SHUFA AZZAHRA",
+      "NoRawat": "2025/12/31/000157",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T09:55:31.3372113+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 09:53:55",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 09:54:55",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:57:55",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 10:04:55",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 10:26:55",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170203011225Y001253",
+      "KodeBooking": "1702R00220251231000165ANA012",
+      "NoRkmMedis": "088952",
+      "NamaPasien": "MUHAMMAD ADZRIEL",
+      "NoRawat": "2025/12/31/000165",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T10:08:29.128719+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 10:07:46",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 10:09:46",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 10:10:46",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 10:15:46",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 10:32:46",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001245",
+      "KodeBooking": "1702R00220251231000070GPR003",
+      "NoRkmMedis": "111735",
+      "NamaPasien": "SARTINI",
+      "NoRawat": "2025/12/31/000070",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T10:13:20.5218418+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:19:53",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:23:53",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:47:45",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:48:45",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:50:45",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "170203011225Y001219",
+      "KodeBooking": "1702R00220251231000107GPR005",
+      "NoRkmMedis": "086603",
+      "NamaPasien": "NURHIDAYATI",
+      "NoRawat": "2025/12/31/000107",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T10:15:30.7634401+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:52:43",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:54:43",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:56:43",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 08:57:43",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 09:21:43",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K001111",
+      "KodeBooking": "1702R00220251231000092GPR004",
+      "NoRkmMedis": "108745",
+      "NamaPasien": "SUCI AMELIA",
+      "NoRawat": "2025/12/31/000092",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T10:24:55.3233919+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:38:01",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:39:01",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 09:56:24",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 09:57:24",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 10:00:24",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225K002462",
+      "KodeBooking": "1702R00220251231000169PAR015",
+      "NoRkmMedis": "061020",
+      "NamaPasien": "SUMIATI",
+      "NoRawat": "2025/12/31/000169",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T10:35:33.1134628+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 10:24:42",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 10:25:42",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 10:26:42",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 10:36:42",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 11:00:42",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225V003652",
+      "KodeBooking": "1702R00220251231000043IRM008",
+      "NoRkmMedis": "082498",
+      "NamaPasien": "DARNIAH",
+      "NoRawat": "2025/12/31/000043",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T10:36:53.2523195+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:00:00",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:04:00",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:04:23",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 08:12:23",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 08:28:23",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    },
+    {
+      "NomorReferensi": "1702R0021225V003188",
+      "KodeBooking": "1702R00220251231000008IRM006",
+      "NoRkmMedis": "051280",
+      "NamaPasien": "YENI AULIA RAHMAH",
+      "NoRawat": "2025/12/31/000008",
+      "AutoOrderDone": true,
+      "UpdateWaktuDone": true,
+      "ProcessedAt": "2025-12-31T11:05:55.5356922+08:00",
+      "Tasks": {
+        "1": {
+          "Waktu": "2025-12-31 08:11:07",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "2": {
+          "Waktu": "2025-12-31 08:14:07",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "3": {
+          "Waktu": "2025-12-31 08:15:07",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "4": {
+          "Waktu": "2025-12-31 08:16:07",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "5": {
+          "Waktu": "2025-12-31 08:35:07",
+          "BPJSStatus": "success",
+          "BPJSCode": 200,
+          "Message": ""
+        },
+        "6": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        },
+        "7": {
+          "Waktu": "",
+          "BPJSStatus": "skipped",
+          "BPJSCode": 0,
+          "Message": ""
+        }
+      },
+      "Error": ""
+    }
+  ]
+}

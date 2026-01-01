@@ -14,7 +14,6 @@ import (
 	"gotrol/internal/models"
 )
 
-// APIServer handles HTTP API for dashboard
 type APIServer struct {
 	store  *Store
 	db     *database.MySQL
@@ -30,7 +29,6 @@ func NewAPIServer(store *Store, db *database.MySQL, port int) *APIServer {
 	}
 }
 
-// Start starts the API server
 func (a *APIServer) Start() error {
 	mux := http.NewServeMux()
 
@@ -42,8 +40,6 @@ func (a *APIServer) Start() error {
 	mux.HandleFunc("/api/patients/monthly", a.handlePatientsMonthly)
 	mux.HandleFunc("/api/patients/registration", a.handlePatientsRegistration)
 
-	// Serve static files (UI)
-	// Make sure to use absolute path or correct relative path depending on execution context
 	fs := http.FileServer(http.Dir("web"))
 	mux.Handle("/", fs)
 
@@ -52,11 +48,10 @@ func (a *APIServer) Start() error {
 		Handler: mux,
 	}
 
-	log.Printf("✓ Report API started at http://localhost:%d", a.port)
+	log.Printf(" Report API started at http://localhost:%d", a.port)
 	return a.server.ListenAndServe()
 }
 
-// Stop stops the API server
 func (a *APIServer) Stop() error {
 	if a.server != nil {
 		return a.server.Close()
@@ -89,7 +84,6 @@ func (a *APIServer) handleReports(w http.ResponseWriter, r *http.Request) {
 func (a *APIServer) getReportByDate(w http.ResponseWriter, r *http.Request, date string) {
 	w.Header().Set("Content-Type", "application/json")
 
-	// Parse pagination params
 	page := 1
 	limit := 10
 	search := r.URL.Query().Get("search")
@@ -105,17 +99,14 @@ func (a *APIServer) getReportByDate(w http.ResponseWriter, r *http.Request, date
 		}
 	}
 
-	// Get total BPJS patients for the date
 	totalBPJS := a.getTotalBPJSPatients(date)
 
-	// Get all results
 	allResults, err := a.store.GetResultsByDate(date)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	// Apply search filter
 	var filteredResults []models.ProcessResult
 	if search != "" {
 		searchLower := strings.ToLower(search)
@@ -130,14 +121,12 @@ func (a *APIServer) getReportByDate(w http.ResponseWriter, r *http.Request, date
 		filteredResults = allResults
 	}
 
-	// Calculate pagination
 	totalFiltered := len(filteredResults)
 	totalPages := (totalFiltered + limit - 1) / limit
 	if totalPages == 0 {
 		totalPages = 1
 	}
 
-	// Slice for current page
 	start := (page - 1) * limit
 	end := start + limit
 	if start > totalFiltered {
@@ -151,7 +140,6 @@ func (a *APIServer) getReportByDate(w http.ResponseWriter, r *http.Request, date
 
 	processed, success, failed, _ := a.store.GetSummaryByDate(date)
 
-	// Extended response with pagination info
 	response := map[string]interface{}{
 		"date":                date,
 		"total_bpjs_patients": totalBPJS,
@@ -177,7 +165,6 @@ func (a *APIServer) handleReportsSummary(w http.ResponseWriter, r *http.Request)
 	today := time.Now()
 	todayStr := today.Format("2006-01-02")
 
-	// Calculate start of week (Monday)
 	weekday := int(today.Weekday())
 	if weekday == 0 {
 		weekday = 7
@@ -188,17 +175,17 @@ func (a *APIServer) handleReportsSummary(w http.ResponseWriter, r *http.Request)
 
 	var (
 		wg sync.WaitGroup
-		// Today
+
 		todayBPJS      int
 		todayProcessed int
 		todaySuccess   int
 		todayFailed    int
-		// Week
+
 		weekBPJS      int
 		weekProcessed int
 		weekSuccess   int
 		weekFailed    int
-		// Month
+
 		monthBPJS      int
 		monthProcessed int
 		monthSuccess   int
@@ -207,14 +194,12 @@ func (a *APIServer) handleReportsSummary(w http.ResponseWriter, r *http.Request)
 
 	wg.Add(3)
 
-	// Fetch Today Stats
 	go func() {
 		defer wg.Done()
 		todayBPJS = a.getTotalBPJSPatients(todayStr)
 		todayProcessed, todaySuccess, todayFailed, _ = a.store.GetSummaryByDate(todayStr)
 	}()
 
-	// Fetch Week Stats
 	go func() {
 		defer wg.Done()
 		start := weekStart.Format("2006-01-02")
@@ -224,7 +209,6 @@ func (a *APIServer) handleReportsSummary(w http.ResponseWriter, r *http.Request)
 		log.Printf("DEBUG: Week Stats: BPJS=%d, Proc=%d, Succ=%d", weekBPJS, weekProcessed, weekSuccess)
 	}()
 
-	// Fetch Month Stats
 	go func() {
 		defer wg.Done()
 		start := monthStart.Format("2006-01-02")
@@ -263,7 +247,6 @@ func (a *APIServer) handleReportsSummary(w http.ResponseWriter, r *http.Request)
 	json.NewEncoder(w).Encode(summary)
 }
 
-// getTotalBPJSPatients counts BPJS patients for a date from MySQL
 func (a *APIServer) getTotalBPJSPatients(date string) int {
 	var count int
 	a.db.DB.QueryRow(`
@@ -279,7 +262,6 @@ func (a *APIServer) getTotalBPJSPatients(date string) int {
 	return count
 }
 
-// getTotalBPJSPatientsRange counts BPJS patients for a date range
 func (a *APIServer) getTotalBPJSPatientsRange(startDate, endDate string) int {
 	var count int
 	a.db.DB.QueryRow(`
@@ -295,7 +277,6 @@ func (a *APIServer) getTotalBPJSPatientsRange(startDate, endDate string) int {
 	return count
 }
 
-// handleStatsOverview returns comprehensive statistics comparing BPJS status with GoTrol processing
 func (a *APIServer) handleStatsOverview(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -304,10 +285,8 @@ func (a *APIServer) handleStatsOverview(w http.ResponseWriter, r *http.Request) 
 		date = time.Now().Format("2006-01-02")
 	}
 
-	// Query MySQL for BPJS patient status breakdown
 	var totalBPJS, statusSudah, statusBelum, taskSent int
 
-	// Total BPJS patients for the date
 	a.db.DB.QueryRow(`
 		SELECT COUNT(DISTINCT mar.nomor_referensi)
 		FROM mlite_antrian_referensi mar
@@ -319,7 +298,6 @@ AND DATE(rp.tgl_registrasi) = mar.tanggal_periksa
 			AND rp.kd_pj = 'BPJ'
 	`, date).Scan(&totalBPJS)
 
-	// Status "Sudah" - already sent via old system
 	a.db.DB.QueryRow(`
 		SELECT COUNT(DISTINCT mar.nomor_referensi)
 		FROM mlite_antrian_referensi mar
@@ -332,7 +310,6 @@ AND DATE(rp.tgl_registrasi) = mar.tanggal_periksa
 			AND mar.status_kirim = 'Sudah'
 	`, date).Scan(&statusSudah)
 
-	// Status "Belum" - not yet sent
 	a.db.DB.QueryRow(`
 		SELECT COUNT(DISTINCT mar.nomor_referensi)
 		FROM mlite_antrian_referensi mar
@@ -345,7 +322,6 @@ AND DATE(rp.tgl_registrasi) = mar.tanggal_periksa
 			AND (mar.status_kirim = 'Belum' OR mar.status_kirim IS NULL OR mar.status_kirim = '')
 	`, date).Scan(&statusBelum)
 
-	// Count TaskID sent via GoTrol (Task 5 with status Sudah means complete)
 	a.db.DB.QueryRow(`
 		SELECT COUNT(DISTINCT t.nomor_referensi)
 		FROM mlite_antrian_referensi_taskid t
@@ -354,7 +330,6 @@ AND DATE(rp.tgl_registrasi) = mar.tanggal_periksa
 			AND t.status = 'Sudah'
 	`, date).Scan(&taskSent)
 
-	// Get GoTrol processed count from report store
 	gotrolProcessed, gotrolSuccess, gotrolFailed, _ := a.store.GetSummaryByDate(date)
 
 	response := map[string]interface{}{
@@ -384,11 +359,9 @@ AND DATE(rp.tgl_registrasi) = mar.tanggal_periksa
 	json.NewEncoder(w).Encode(response)
 }
 
-// handlePatientsMonthly returns monthly BPJS patient data directly from MySQL
 func (a *APIServer) handlePatientsMonthly(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	// Parse year and month from query params (default: current month)
 	now := time.Now()
 	year := now.Year()
 	month := int(now.Month())
@@ -404,17 +377,14 @@ func (a *APIServer) handlePatientsMonthly(w http.ResponseWriter, r *http.Request
 		}
 	}
 
-	// Calculate date range for the month
 	startDate := time.Date(year, time.Month(month), 1, 0, 0, 0, 0, time.Local)
-	endDate := startDate.AddDate(0, 1, -1) // Last day of month
+	endDate := startDate.AddDate(0, 1, -1)
 
 	startStr := startDate.Format("2006-01-02")
 	endStr := endDate.Format("2006-01-02")
 
 	log.Printf("DEBUG Monthly API: Querying %s to %s", startStr, endStr)
 
-	// Fast query: Total patients - NO JOIN, query directly from mlite_antrian_referensi
-	// All records with kodebooking are BPJS patients
 	var totalPatients int
 	err := a.db.DB.QueryRow(`
 		SELECT COUNT(DISTINCT nomor_referensi)
@@ -426,7 +396,6 @@ func (a *APIServer) handlePatientsMonthly(w http.ResponseWriter, r *http.Request
 		log.Printf("DEBUG Monthly API - Total error: %v", err)
 	}
 
-	// Count status Sudah - NO JOIN
 	var statusSudah int
 	a.db.DB.QueryRow(`
 		SELECT COUNT(DISTINCT nomor_referensi)
@@ -436,7 +405,6 @@ func (a *APIServer) handlePatientsMonthly(w http.ResponseWriter, r *http.Request
 			AND status_kirim = 'Sudah'
 	`, startStr, endStr).Scan(&statusSudah)
 
-	// Count status Belum - NO JOIN
 	var statusBelum int
 	a.db.DB.QueryRow(`
 		SELECT COUNT(DISTINCT nomor_referensi)
@@ -466,17 +434,14 @@ func (a *APIServer) handlePatientsMonthly(w http.ResponseWriter, r *http.Request
 	json.NewEncoder(w).Encode(response)
 }
 
-// handlePatientsRegistration returns patient registration data with referensi and task timeline
 func (a *APIServer) handlePatientsRegistration(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	// Get date from query param (default: today)
 	date := r.URL.Query().Get("date")
 	if date == "" {
 		date = time.Now().Format("2006-01-02")
 	}
 
-	// Pagination params
 	page := 1
 	limit := 10
 	if p := r.URL.Query().Get("page"); p != "" {
@@ -490,12 +455,10 @@ func (a *APIServer) handlePatientsRegistration(w http.ResponseWriter, r *http.Re
 		}
 	}
 
-	// Search query
 	searchQuery := strings.TrimSpace(r.URL.Query().Get("search"))
 
 	log.Printf("DEBUG Registration API: date=%s, page=%d, limit=%d, search=%s", date, page, limit, searchQuery)
 
-	// Build the base query with optional search filter
 	baseQuery := `
 		FROM reg_periksa 
 		INNER JOIN pasien ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis 
@@ -516,7 +479,6 @@ func (a *APIServer) handlePatientsRegistration(w http.ResponseWriter, r *http.Re
 		args = append(args, searchPattern, searchPattern, searchPattern)
 	}
 
-	// Count total for pagination
 	countQuery := "SELECT COUNT(*) " + baseQuery
 	var totalItems int
 	if err := a.db.DB.QueryRow(countQuery, args...).Scan(&totalItems); err != nil {
@@ -524,7 +486,6 @@ func (a *APIServer) handlePatientsRegistration(w http.ResponseWriter, r *http.Re
 		totalItems = 0
 	}
 
-	// Main query - get patient registration with joins
 	query := `
 		SELECT 
 			pasien.no_peserta,
@@ -592,7 +553,6 @@ func (a *APIServer) handlePatientsRegistration(w http.ResponseWriter, r *http.Re
 		}
 		p.JamReg = string(jamReg)
 
-		// Get task times for this patient
 		if p.NomorReferensi != "" {
 			taskRows, err := a.db.DB.Query(`
 				SELECT taskid, waktu 
@@ -606,7 +566,7 @@ func (a *APIServer) handlePatientsRegistration(w http.ResponseWriter, r *http.Re
 					var taskID int
 					var waktuMs int64
 					if err := taskRows.Scan(&taskID, &waktuMs); err == nil {
-						// Convert ms timestamp to datetime string
+
 						waktuStr := ""
 						if waktuMs > 0 {
 							t := time.Unix(waktuMs/1000, (waktuMs%1000)*1000000)
@@ -623,7 +583,6 @@ func (a *APIServer) handlePatientsRegistration(w http.ResponseWriter, r *http.Re
 
 	log.Printf("DEBUG Registration Result: total=%d patients (page %d)", len(patients), page)
 
-	// Calculate total pages
 	totalPages := (totalItems + limit - 1) / limit
 	if totalPages == 0 {
 		totalPages = 1

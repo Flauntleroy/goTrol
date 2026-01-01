@@ -43,7 +43,6 @@ func NewClient(creds *config.BPJSCredentials) *Client {
 	}
 }
 
-// generateSignature creates HMAC-SHA256 signature for BPJS API
 func (c *Client) generateSignature(timestamp string) string {
 	message := c.creds.ConsID + "&" + timestamp
 	h := hmac.New(sha256.New, []byte(c.creds.SecretKey))
@@ -51,12 +50,10 @@ func (c *Client) generateSignature(timestamp string) string {
 	return base64.StdEncoding.EncodeToString(h.Sum(nil))
 }
 
-// getTimestamp returns UTC timestamp for BPJS API
 func (c *Client) getTimestamp() string {
 	return strconv.FormatInt(time.Now().UTC().Unix(), 10)
 }
 
-// UpdateWaktu sends task update to BPJS API
 func (c *Client) UpdateWaktu(kodeBooking string, taskID int, waktuMs int64) (*BPJSResponse, error) {
 	if c.creds.AntrianURL == "" {
 		return nil, fmt.Errorf("BPJS Antrian URL not configured")
@@ -70,7 +67,6 @@ func (c *Client) UpdateWaktu(kodeBooking string, taskID int, waktuMs int64) (*BP
 		Waktu:       waktuMs,
 	}
 
-	// Use JSON body like PHP's request2
 	jsonBody, err := json.Marshal(reqBody)
 	if err != nil {
 		return nil, fmt.Errorf("failed to marshal request: %w", err)
@@ -84,7 +80,6 @@ func (c *Client) UpdateWaktu(kodeBooking string, taskID int, waktuMs int64) (*BP
 	timestamp := c.getTimestamp()
 	signature := c.generateSignature(timestamp)
 
-	// Match PHP's request2 headers - Content-Type: Application/x-www-form-urlencoded
 	req.Header.Set("Content-Type", "Application/x-www-form-urlencoded")
 	req.Header.Set("X-cons-id", c.creds.ConsID)
 	req.Header.Set("X-timestamp", timestamp)
@@ -110,7 +105,6 @@ func (c *Client) UpdateWaktu(kodeBooking string, taskID int, waktuMs int64) (*BP
 	return &bpjsResp, nil
 }
 
-// IsSuccess checks if BPJS response is successful
 func (r *BPJSResponse) IsSuccess() bool {
 	return r.Metadata.Code == 200
 }

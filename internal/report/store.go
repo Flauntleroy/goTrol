@@ -10,7 +10,6 @@ import (
 	"gotrol/internal/models"
 )
 
-// Store handles report storage in JSON files
 type Store struct {
 	basePath string
 	mu       sync.RWMutex
@@ -22,7 +21,7 @@ type DailyData struct {
 }
 
 func NewStore(dbPath string) (*Store, error) {
-	// Create directory if not exists
+
 	dir := filepath.Dir(dbPath)
 	if dir != "." && dir != "" {
 		if err := os.MkdirAll(dir, 0755); err != nil {
@@ -30,7 +29,6 @@ func NewStore(dbPath string) (*Store, error) {
 		}
 	}
 
-	// Use the path as base directory for JSON files
 	basePath := filepath.Dir(dbPath)
 	if basePath == "." {
 		basePath = "./reports"
@@ -82,16 +80,14 @@ func (s *Store) saveDailyData(data *DailyData) error {
 	return os.WriteFile(filePath, jsonData, 0644)
 }
 
-// SaveResult saves a process result to the JSON file
 func (s *Store) SaveResult(result models.ProcessResult) error {
 	date := result.ProcessedAt.Format("2006-01-02")
-	
+
 	daily, err := s.loadDailyData(date)
 	if err != nil {
 		daily = &DailyData{Date: date, Results: []models.ProcessResult{}}
 	}
 
-	// Check if already exists
 	for i, r := range daily.Results {
 		if r.NomorReferensi == result.NomorReferensi {
 			daily.Results[i] = result
@@ -103,7 +99,6 @@ func (s *Store) SaveResult(result models.ProcessResult) error {
 	return s.saveDailyData(daily)
 }
 
-// GetResultsByDate gets all results for a specific date
 func (s *Store) GetResultsByDate(date string) ([]models.ProcessResult, error) {
 	daily, err := s.loadDailyData(date)
 	if err != nil {
@@ -112,7 +107,6 @@ func (s *Store) GetResultsByDate(date string) ([]models.ProcessResult, error) {
 	return daily.Results, nil
 }
 
-// GetSummaryByDate gets summary statistics for a date
 func (s *Store) GetSummaryByDate(date string) (processed, success, failed int, err error) {
 	results, err := s.GetResultsByDate(date)
 	if err != nil {
@@ -130,7 +124,6 @@ func (s *Store) GetSummaryByDate(date string) (processed, success, failed int, e
 	return
 }
 
-// GetSummaryByDateRange gets summary for a date range
 func (s *Store) GetSummaryByDateRange(startDate, endDate string) (processed, success, failed int, err error) {
 	start, err := time.Parse("2006-01-02", startDate)
 	if err != nil {
@@ -146,7 +139,6 @@ func (s *Store) GetSummaryByDateRange(startDate, endDate string) (processed, suc
 		p, s, f, err := s.GetSummaryByDate(dateStr)
 		if err == nil {
 			if p > 0 {
-				// log.Printf("DEBUG: Found data for %s: %d processed", dateStr, p)
 			}
 			processed += p
 			success += s
@@ -156,7 +148,6 @@ func (s *Store) GetSummaryByDateRange(startDate, endDate string) (processed, suc
 	return
 }
 
-// IsProcessed checks if a nomor_referensi has been processed today
 func (s *Store) IsProcessed(nomorReferensi string, date string) bool {
 	results, err := s.GetResultsByDate(date)
 	if err != nil {

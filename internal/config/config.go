@@ -35,7 +35,6 @@ type ReportConfig struct {
 	DBPath string `yaml:"db_path"`
 }
 
-// BPJSCredentials from mlite_settings table
 type BPJSCredentials struct {
 	ConsID     string
 	SecretKey  string
